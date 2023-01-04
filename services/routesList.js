@@ -23,3 +23,20 @@
 
 //* Доп. задание-2: Сделать фильтрацию контактов по полю избранного (GET /contacts?favorite=true)
 //  http://localhost:3000/api/contacts?favorite=true
+
+
+
+//? ------------------ HW-5 ------------------
+//! serve static
+// GET  -->   http://localhost:3000/public
+// GET  -->   http://localhost:3000/public/about.html
+// GET  -->   http://localhost:3000/public/text.txt
+
+//! avatars
+// GET  -->   http://localhost:3000/public/avatars/avatar-194938.png
+// GET  -->   http://localhost:3000/public/avatars/avatar-805390.png
+// GET  -->   http://localhost:3000/public/avatars/avatar-805428.png
+// GET  -->   http://localhost:3000/public/avatars/avatar-5953714.png
+// GET  -->   http://localhost:3000/public/avatars/man-6997508.png
+// GET  -->   http://localhost:3000/public/avatars/monster-1459777.png
+// GET  -->   http://localhost:3000/public/avatars/woman-6997660.png
