@@ -31,6 +31,8 @@
 // GET  -->   http://localhost:3000/public
 // GET  -->   http://localhost:3000/public/about.html
 // GET  -->   http://localhost:3000/public/text.txt
+// GET  -->   http://localhost:3000/api/files/download/My LOGO_74b3f8fd-5834-414a-ad39-a6f7761a1835.jpg
+// GET  -->   http://localhost:3000/api/files/download/Country of Crimson Clouds.jpg
 
 //! avatars
 // GET  -->   http://localhost:3000/public/avatars/avatar-194938.png
