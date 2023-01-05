@@ -7,7 +7,7 @@ const uploadController = async (req, res) => {
 
 
     res.status(200).json({
-        status: "filesController",
+        status: "success filesController",
         code: 200,
 
     })

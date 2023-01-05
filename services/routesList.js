@@ -40,6 +40,7 @@
 // GET  -->   http://localhost:3000/public/avatars/man-6997508.png
 // GET  -->   http://localhost:3000/public/avatars/monster-1459777.png
 // GET  -->   http://localhost:3000/public/avatars/woman-6997660.png
+// GET  -->   http://localhost:3000/public/avatars/avatar-Ruslan.jpg
 
 //! files/upload
-// POST  -->  http://localhost:3000/api//files/upload
+// POST  -->  http://localhost:3000/api/files/upload
