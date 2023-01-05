@@ -42,4 +42,4 @@
 // GET  -->   http://localhost:3000/public/avatars/woman-6997660.png
 
 //! files/upload
-// POST  -->  hhttp://localhost:3000/api//files/upload
+// POST  -->  http://localhost:3000/api//files/upload

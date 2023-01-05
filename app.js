@@ -7,7 +7,7 @@ require("colors");
 const authRouter = require('./routes/api/authRouter.js');
 const contactsRouter = require('./routes/api/contactsRouter');
 // const usersRouter = require('./routes/api/usersRouter');
-
+const filesRouter = require('./routes/api/filesRouter');
 
 //----------------------------------------------------------------
 const app = express()
