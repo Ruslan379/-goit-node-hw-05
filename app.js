@@ -27,7 +27,7 @@ const FILE_DIR = path.resolve("./public/output")
 // app.use("/", express.static("public"));
 app.use("/public", express.static("public"));
 app.use("/public/avatars", express.static("public/avatars"));
-router.get("/api/files/download", express.static(FILE_DIR))
+app.use("/api/files/download", express.static(FILE_DIR))
 
 //! files
 app.use('/api/files', filesRouter)
