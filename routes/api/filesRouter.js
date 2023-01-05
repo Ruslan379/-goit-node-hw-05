@@ -3,6 +3,7 @@ const router = express.Router()
 
 const multer = require('multer')
 const path = require('path')
+const { v4: uuidV4 } = require('uuid')
 
 const { controllerWrapper, authMiddleware } = require("../../middlewares")
 
@@ -14,14 +15,16 @@ const { filesControllers: ctrl } = require("../../controllers")
 // router.use(authMiddleware);
 
 
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.resolve("./public/output"))
     },
     filename: (req, file, cb) => {
+        // const [filename, extension] = file.originalname.split(".");
+        // cb(null, `${filename}.${extension}`);
+        //! чтобы избежать одинаковые названия файлов при повторной загруке одного и того же файла
         const [filename, extension] = file.originalname.split(".");
-        cb(null, `${filename}.${extension}`);
+        cb(null, `${filename + "_" + uuidV4()}.${extension}`);
     },
 });
 
