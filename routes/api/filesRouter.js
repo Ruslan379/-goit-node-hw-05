@@ -39,7 +39,7 @@ router.post("/upload", uploadMiddleware.single("avatar"), controllerWrapper(ctrl
 
 //! 2. GET --> api/files/download
 //? content-type: multipart/form-data
-router.get("/download", express.static(FILE_DIR))
+router.use("/download", express.static(FILE_DIR))
 
 
 

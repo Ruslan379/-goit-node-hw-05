@@ -27,7 +27,9 @@ const FILE_DIR = path.resolve("./public/output")
 // app.use("/", express.static("public"));
 app.use("/public", express.static("public"));
 app.use("/public/avatars", express.static("public/avatars"));
-app.use("/api/files/download", express.static(FILE_DIR))
+
+//! или в filesRouter.js --> router.use("/download", express.static(FILE_DIR))
+// app.use("/api/files/download", express.static(FILE_DIR))
 
 //! files
 app.use('/api/files', filesRouter)
