@@ -15,9 +15,11 @@ const { filesControllers: ctrl } = require("../../controllers")
 // router.use(authMiddleware);
 
 
+const FILE_DIR = path.resolve("./public/output")
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.resolve("./public/output"))
+        cb(null, FILE_DIR)
     },
     filename: (req, file, cb) => {
         // const [filename, extension] = file.originalname.split(".");
@@ -32,9 +34,12 @@ const storage = multer.diskStorage({
 const uploadMiddleware = multer({ storage });
 
 //! 1. POST --> api/files/upload
-// content-type: multipart/form-data
+//? content-type: multipart/form-data
 router.post("/upload", uploadMiddleware.single("avatar"), controllerWrapper(ctrl.uploadController))
 
+//! 2. GET --> api/files/download
+//? content-type: multipart/form-data
+router.get("/download", express.static(FILE_DIR))
 
 
 

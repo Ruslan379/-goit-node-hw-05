@@ -3,6 +3,7 @@ const logger = require('morgan')
 const cors = require('cors')
 require("dotenv").config()
 require("colors");
+const path = require('path')
 
 const authRouter = require('./routes/api/authRouter.js');
 const contactsRouter = require('./routes/api/contactsRouter');
@@ -18,11 +19,15 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
 
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+const FILE_DIR = path.resolve("./public/output")
+
 //! serve static
 // app.use("/", express.static("public"));
 app.use("/public", express.static("public"));
 app.use("/public/avatars", express.static("public/avatars"));
+router.get("/api/files/download", express.static(FILE_DIR))
 
 //! files
 app.use('/api/files', filesRouter)

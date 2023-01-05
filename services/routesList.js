@@ -44,3 +44,6 @@
 
 //! files/upload
 // POST  -->  http://localhost:3000/api/files/upload
+
+//! files/download
+// GET  -->  http://localhost:3000/api/files/download/
