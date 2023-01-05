@@ -18,10 +18,16 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //! serve static
 // app.use("/", express.static("public"));
 app.use("/public", express.static("public"));
 app.use("/public/avatars", express.static("public/avatars"));
+
+//! files
+app.use('/api/files', filesRouter)
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 // app.use('/api/users/current', usersRouter)
 app.use('/api/users', authRouter)
