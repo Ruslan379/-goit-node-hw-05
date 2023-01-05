@@ -1,6 +1,6 @@
-const filesController = require("./filesController")
+const uploadController = require("./uploadController")
 
 
 module.exports = {
-    filesController,
+    uploadController,
 }

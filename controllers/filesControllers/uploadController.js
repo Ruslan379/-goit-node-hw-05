@@ -3,7 +3,7 @@ const { Unauthorized } = require("http-errors");
 
 
 //-----------------------------------------------------------------------------
-const filesController = async (req, res) => {
+const uploadController = async (req, res) => {
 
 
     res.status(200).json({
@@ -14,4 +14,4 @@ const filesController = async (req, res) => {
 };
 
 
-module.exports = filesController
+module.exports = uploadController

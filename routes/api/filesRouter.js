@@ -13,7 +13,7 @@ const { filesControllers: ctrl } = require("../../controllers")
 
 
 //! 1. POST --> api/files/upload
-router.post("/upload", controllerWrapper(ctrl.filesController))
+router.post("/upload", controllerWrapper(ctrl.uploadController))
 
 
 
