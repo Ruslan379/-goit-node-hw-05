@@ -37,8 +37,7 @@ const uploadMiddleware = multer({ storage });
 //? content-type: multipart/form-data
 router.post("/upload", uploadMiddleware.single("avatar"), controllerWrapper(ctrl.uploadController))
 
-//! 2. GET --> api/files/download
-//? content-type: multipart/form-data
+//! 2. use --> api/files/download
 // router.get("/download", express.static(FILE_DIR)) //! так НЕ РАБОТАЕТ!!! --> "Route not found"
 router.use("/download", express.static(FILE_DIR))
 
