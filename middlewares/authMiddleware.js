@@ -20,6 +20,7 @@
 const { Unauthorized } = require("http-errors");
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
+// JWT_SECRET = "secret" //! Для теста Jest
 
 const { User } = require("../models");
 
@@ -63,8 +64,8 @@ const authMiddleware = async (req, res, next) => {
             error.status = 401;
         }
         next(error);
-    }
-}
+    };
+};
 
 module.exports = authMiddleware
 
