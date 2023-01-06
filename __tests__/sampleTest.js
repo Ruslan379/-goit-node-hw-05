@@ -6,11 +6,18 @@ const addTwoNumbers = (a, b) => {
 
 //! Test suite (Набор тестов)
 describe('Additional service test', () => {
-    //! Один Unit-Test
-    it("Add two valid numbers", () => {
+    //! Первый Unit-Test case
+    it("1.Add two valid numbers", () => {
         const firstNumber = 1;
         const secondNumber = 1;
         const addTwoNumbersReult = addTwoNumbers(firstNumber, secondNumber);
         expect(addTwoNumbersReult).toEqual(firstNumber + secondNumber);
-    })
+    });
+    //! Второй Unit-Test case
+    it("2.Add two valid numbers", () => {
+        const firstNumber = -10;
+        const secondNumber = 1;
+        const addTwoNumbersReult = addTwoNumbers(firstNumber, secondNumber);
+        expect(addTwoNumbersReult).toEqual(firstNumber + secondNumber);
+    });
 });
