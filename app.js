@@ -20,7 +20,7 @@ app.use(cors())
 app.use(express.json())
 
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const FILE_DIR = path.resolve("./public/output")
 
 //! serve static
@@ -33,7 +33,7 @@ app.use("/public/avatars", express.static("public/avatars"));
 
 //! files
 app.use('/api/files', filesRouter)
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 // app.use('/api/users/current', usersRouter)

@@ -22,11 +22,15 @@ const storage = multer.diskStorage({
         cb(null, FILE_DIR)
     },
     filename: (req, file, cb) => {
+        //! так можно перезаписать файл при повторной загруке одного и того же файла
         // const [filename, extension] = file.originalname.split(".");
         // cb(null, `${filename}.${extension}`);
         //! чтобы избежать одинаковые названия файлов при повторной загруке одного и того же файла
         const [filename, extension] = file.originalname.split(".");
         cb(null, `${filename + "_" + uuidV4()}.${extension}`);
+    },
+    limits: {
+        fileSize: 11048576,
     },
 });
 
