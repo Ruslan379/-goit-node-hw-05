@@ -11,6 +11,6 @@ describe('Additional service test', () => {
         const firstNumber = 1;
         const secondNumber = 1;
         const addTwoNumbersReult = addTwoNumbers(firstNumber, secondNumber);
-        expect(1 + 1).toEqual(2);
+        expect(addTwoNumbersReult).toEqual(firstNumber + secondNumber);
     })
 });
