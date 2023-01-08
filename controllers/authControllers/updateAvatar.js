@@ -57,7 +57,6 @@ const updateAvatar = async (req, res) => {
     resizeAvatar();
     //----------------------------------------------------------------------------
 
-
     try {
         // const resultUpload = path.join(avatarsDir, avatarNewName);
         const resultUpload = path.join(avatarsDir, avatarNewJimpName);
@@ -66,7 +65,8 @@ const updateAvatar = async (req, res) => {
 
 
 
-        await fs.rename(tempUpload, resultUpload);
+        // await fs.rename(tempUpload, resultUpload); //! old
+        await fs.rename(avatarTempURL, resultUpload);
 
         const avatarURL = path.join("public", "avatars", avatarNewJimpName);
         console.log("avatarURL:".bgGreen, avatarURL.green); //!;
