@@ -72,6 +72,7 @@ app.post("/api/products", upload.single("image"), async (req, res) => {
       status: "success /api/products",
       code: 201,
       uploadFile,
+      newProduct,
       products
     })
     // res.status(201).json(newProduct);
@@ -81,6 +82,12 @@ app.post("/api/products", upload.single("image"), async (req, res) => {
 });
 
 app.get("/api/products", async (req, res) => {
+  //! мой вариант
+  // res.status(200).json({
+  //   status: "success, products --> /api/products",
+  //   code: 200,
+  //   products
+  // })
   res.json(products);
 })
 
