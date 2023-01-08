@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static("public")); //! Чтобы Express мог раздавать статические файлы из папки "/public"
 
 //-------------------------------------------------------------------------------------
 const tempDir = path.join(__dirname, "tmp");
