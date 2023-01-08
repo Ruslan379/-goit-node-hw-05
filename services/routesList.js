@@ -53,4 +53,4 @@
 // USE  -->  http://localhost:3000/api/files/download/Country of Crimson Clouds.jpg
 
 //! 6. Обновление аватарки (avatarURL) пользователя
-// POST -- > http://localhost:3000/api/users/avatars
+// PATCH -- > http://localhost:3000/api/users/avatars
