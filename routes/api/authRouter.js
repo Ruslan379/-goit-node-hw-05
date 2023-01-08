@@ -43,7 +43,7 @@ router.patch('/', authMiddleware, validateMiddlewareChangeSubscription, controll
 
 //! 6. Обновление аватарки (avatarURL) пользователя
 //!    POST -- > api/users/avatars
-router.patch("/avatars", auth, upload.single("avatar"), ctrlWrapper(ctrl.updateAvatar));
+router.patch("/avatars", authMiddleware, upload.single("avatar"), ctrlWrapper(ctrl.updateAvatar));
 
 
 
