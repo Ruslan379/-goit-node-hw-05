@@ -3,15 +3,16 @@ const express = require("express")
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
-// const fs = require("fs/promises");
-// const { v4 } = require("uuid");
+const fs = require("fs/promises");
+const { v4 } = require("uuid");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
+//-------------------------------------------------------------------------------------
 const tempDir = path.join(__dirname, "tmp");
 console.log("tempDir:", tempDir.blue);
 // const productsDir = path.join(__dirname, "public", "products");
@@ -52,11 +53,13 @@ app.post("/api/products", upload.single("image"), async (req, res) => {
   //   };
   //   products.push(newProduct);
 
-  res.status(200).json({
+  //! мой вариант
+  res.status(201).json({
     status: "success /api/products",
-    code: 200,
+    code: 201,
     uploadFile
   })
+
   //   res.status(201).json(newProduct);
   // } catch (error) {
   //   await fs.unlink(tempUpload);
