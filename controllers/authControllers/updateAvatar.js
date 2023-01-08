@@ -25,9 +25,42 @@ const updateAvatar = async (req, res) => {
     const avatarNewName = `${userId}_${originalname}`;
     console.log("avatarNewName:".bgMagenta, avatarNewName.bgGreen.red); //!;
     console.log("");
+    console.log("");
+    console.log("____________________________________________");
+
+    //----------------------------------------------------------------------------
+    //! Jimp-2
+    const avatarNewJimpName = `Jimp_250x250_${avatarNewName}`;
+    console.log("avatarNewJimpName:".bgMagenta, avatarNewJimpName.bgGreen.red); //!;
+    console.log("");
+    const avatarTempURL = path.join(destination, avatarNewJimpName);
+    console.log("avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
+
+    async function resizeAvatar() {
+        //! Read the image.
+        const image = await Jimp.read(tempUpload);
+        //! 2-вариант
+        await image
+            .resize(250, 250)
+            .quality(60) // set JPEG quality
+            .greyscale() // set greyscale
+            .writeAsync(avatarTempURL); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
+        // .writeAsync(`./tmp/Jimp_${avatarNewName}_250x250.png`); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
+        // .writeAsync(`${avatarNewName}_150x150.png`); //! записывает измененный image в корень папки проекта ./
+        //! 1-вариант 
+        // const image = await Jimp.read('https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg');
+        // await image.resize(250, 250);
+        // await image.greyscale() // set greyscale
+        // await image.writeAsync(`./tmp/${avatarNewName}_250x250.png`); //! Save and overwrite the image
+        // console.log("image:", image); //!
+    }
+    resizeAvatar();
+    //----------------------------------------------------------------------------
+
 
     try {
-        const resultUpload = path.join(avatarsDir, avatarNewName);
+        // const resultUpload = path.join(avatarsDir, avatarNewName);
+        const resultUpload = path.join(avatarsDir, avatarNewJimpName);
         console.log("resultUpload:".bgCyan.black, resultUpload.red); //!;
         console.log("");
 
@@ -35,7 +68,7 @@ const updateAvatar = async (req, res) => {
 
         await fs.rename(tempUpload, resultUpload);
 
-        const avatarURL = path.join("public", "avatars", avatarNewName);
+        const avatarURL = path.join("public", "avatars", avatarNewJimpName);
         console.log("avatarURL:".bgGreen, avatarURL.green); //!;
         console.log("");
         //----------------------------------------------------------------------------
@@ -56,28 +89,28 @@ const updateAvatar = async (req, res) => {
         //----------------------------------------------------------------------------
         //! Jimp-2
 
-        const avatarTempURL = path.join(destination, `Jimp_${avatarNewName}_250x250.png`);
-        console.log("avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
+        // const avatarTempURL = path.join(destination, `Jimp_${avatarNewName}_250x250.png`);
+        // console.log("avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
 
-        async function resizeAvatar() {
-            //! Read the image.
-            const image = await Jimp.read(avatarURL);
-            //! 2-вариант
-            await image
-                .resize(250, 250)
-                .quality(60) // set JPEG quality
-                .greyscale() // set greyscale
-                .writeAsync(avatarTempURL); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
-            // .writeAsync(`./tmp/Jimp_${avatarNewName}_250x250.png`); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
-            // .writeAsync(`${avatarNewName}_150x150.png`); //! записывает измененный image в корень папки проекта ./
-            //! 1-вариант 
-            // const image = await Jimp.read('https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg');
-            // await image.resize(250, 250);
-            // await image.greyscale() // set greyscale
-            // await image.writeAsync(`./tmp/${avatarNewName}_250x250.png`); //! Save and overwrite the image
-            // console.log("image:", image); //!
-        }
-        resizeAvatar();
+        // async function resizeAvatar() {
+        //     //! Read the image.
+        //     const image = await Jimp.read(avatarURL);
+        //     //! 2-вариант
+        //     await image
+        //         .resize(250, 250)
+        //         .quality(60) // set JPEG quality
+        //         .greyscale() // set greyscale
+        //         .writeAsync(avatarTempURL); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
+        //     // .writeAsync(`./tmp/Jimp_${avatarNewName}_250x250.png`); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
+        //     // .writeAsync(`${avatarNewName}_150x150.png`); //! записывает измененный image в корень папки проекта ./
+        //     //! 1-вариант 
+        //     // const image = await Jimp.read('https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg');
+        //     // await image.resize(250, 250);
+        //     // await image.greyscale() // set greyscale
+        //     // await image.writeAsync(`./tmp/${avatarNewName}_250x250.png`); //! Save and overwrite the image
+        //     // console.log("image:", image); //!
+        // }
+        // resizeAvatar();
         //----------------------------------------------------------------------------
 
         await User.findByIdAndUpdate(req.user._id, { avatarURL });
