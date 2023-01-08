@@ -41,5 +41,11 @@ router.get('/current', authMiddleware, controllerWrapper(ctrl.getCurrentControll
 router.patch('/', authMiddleware, validateMiddlewareChangeSubscription, controllerWrapper(ctrl.updatePatchUserSubscription)) //! 2-вариант
 
 
+//! 6. Обновление аватарки (avatarURL) пользователя
+//!    POST -- > api/users/avatars
+router.patch("/avatars", auth, upload.single("avatar"), ctrlWrapper(ctrl.updateAvatar));
+
+
+
 // module.exports = { authRouter: router }
 module.exports = router

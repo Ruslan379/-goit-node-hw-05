@@ -51,3 +51,6 @@
 // USE  -->  http://localhost:3000/api/files/download/
 // USE  -->  http://localhost:3000/api/files/download/My LOGO_74b3f8fd-5834-414a-ad39-a6f7761a1835.jpg
 // USE  -->  http://localhost:3000/api/files/download/Country of Crimson Clouds.jpg
+
+//! 6. Обновление аватарки (avatarURL) пользователя
+// POST -- > http://localhost:3000/api/users/avatars
