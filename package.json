@@ -5,6 +5,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+    "start:dev1": "cross-env NODE_ENV=development nodemon ./app_conspect_5-9_dopmat.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
