@@ -2,7 +2,7 @@ require("colors");
 const express = require("express")
 const cors = require("cors");
 const multer = require("multer");
-// const path = require("path");
+const path = require("path");
 // const fs = require("fs/promises");
 // const { v4 } = require("uuid");
 
@@ -12,29 +12,34 @@ app.use(cors());
 app.use(express.json());
 // app.use(express.static("public"));
 
-// const tempDir = path.join(__dirname, "temp");
+const tempDir = path.join(__dirname, "tmp");
+console.log("tempDir:", tempDir.blue);
 // const productsDir = path.join(__dirname, "public", "products");
 
-// const multerConfig = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, tempDir);
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-//   limits: {
-//     fileSize: 2048
-//   }
-// });
+//! Настройки сохранения файла:
+const multerConfig = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, tempDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+  limits: {
+    // fileSize: 2048
+  }
+});
 
-// const upload = multer({
-//   storage: multerConfig
-// });
+//! Middleware upload
+const upload = multer({
+  storage: multerConfig
+});
 
 // const products = [];
 
-app.post("/api/products", async (req, res) => {
-  // app.post("/api/products", upload.single("image"), async (req, res) => {
+
+app.post("/api/products", upload.single("image"), async (req, res) => {
+  console.log("req.file:".red, req.file); //!
+  const { file: uploadFile } = req
   // const { path: tempUpload, originalname } = req.file;
   // const resultUpload = path.join(productsDir, originalname);
   // try {
@@ -47,6 +52,11 @@ app.post("/api/products", async (req, res) => {
   //   };
   //   products.push(newProduct);
 
+  res.status(200).json({
+    status: "success /api/products",
+    code: 200,
+    uploadFile
+  })
   //   res.status(201).json(newProduct);
   // } catch (error) {
   //   await fs.unlink(tempUpload);

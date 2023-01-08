@@ -9,7 +9,6 @@ const uploadController = async (req, res) => {
     res.status(200).json({
         status: "success filesController",
         code: 200,
-
     })
 };
 
