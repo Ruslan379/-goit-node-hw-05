@@ -9,14 +9,15 @@ const { controllerWrapper, authMiddleware, jimpResize250QualBWMiddleware } = req
 
 const { filesControllers: ctrl } = require("../../controllers")
 
-const { resizeAvatarJimp } = require("../../helpers")
+//todo --> Вызов ф-ции-Middleware Jimp
+// const { resizeAvatarJimp } = require("../../helpers")
 
 
 //----------------------------------------------------------------------------
 //! 0. Проверка токена
 // router.use(authMiddleware);
 
-
+//! ----------------------------- uploadMiddleware -----------------------------
 const FILE_DIR = path.resolve("./public/output")
 console.log("ПОЛНЫЙ путь к временной папке для всех файлов-аватарок -> FILE_DIR:".bgCyan.black, FILE_DIR.cyan); //!;
 console.log("");
@@ -59,10 +60,10 @@ const storage = multer.diskStorage({
 });
 
 const uploadMiddleware = multer({ storage });
+//! ______________________________ uploadMiddleware ______________________________
 
 
-
-//! Вызов ф-ции Jimp
+//todo --> Вызов ф-ции-Middleware  - Jimp
 // const jimpResize250QualBWMiddleware = async (req, res, next) => {
 //     console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
 //     console.log("");
@@ -83,7 +84,12 @@ const uploadMiddleware = multer({ storage });
 
 //! 1. POST --> api/files/upload
 //? content-type: multipart/form-data
-router.post("/upload", uploadMiddleware.single("avatar"), jimpResize250QualBWMiddleware, controllerWrapper(ctrl.uploadController))
+router.post(
+    "/upload",
+    uploadMiddleware.single("avatar"),
+    jimpResize250QualBWMiddleware,
+    controllerWrapper(ctrl.uploadController)
+)
 
 //! 2. use --> api/files/download
 // router.get("/download", express.static(FILE_DIR)) //! так НЕ РАБОТАЕТ!!! --> "Route not found"
