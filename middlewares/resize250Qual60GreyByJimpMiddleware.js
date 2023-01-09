@@ -19,6 +19,9 @@ const resize250Qual60GreyByJimpMiddleware = async (req, res, next) => {
     console.log("ПОЛНЫЙ путь к ориг. файлу аватара во временной папке tmp -> tempUpload:".bgBlue, tempUpload.red); //!;
     console.log("");
 
+    // await resize400ByJimp(tempUpload);
+    // await resize250Qual60ByJimp(tempUpload);
+    // await resize250GreyByJimp(tempUpload);
     await resize250Qual60GreyByJimp(tempUpload);
     next();
 };

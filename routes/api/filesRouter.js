@@ -5,7 +5,11 @@ const multer = require('multer')
 const path = require('path')
 const { v4: uuidV4 } = require('uuid')
 
-const { controllerWrapper, authMiddleware, resize250Qual60GreyByJimpMiddleware } = require("../../middlewares")
+const {
+    controllerWrapper,
+    authMiddleware,
+    resize250Qual60GreyByJimpMiddleware
+} = require("../../middlewares")
 
 const { filesControllers: ctrl } = require("../../controllers")
 
