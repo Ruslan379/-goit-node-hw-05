@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false); //!!!!!
 
 const app = require('./app')
 
@@ -16,3 +17,4 @@ mongoose.connect(DB_HOST)
     console.log(error.message);
     process.exit(1); //? закрыть все неиспользуемые процессы
   });
+
