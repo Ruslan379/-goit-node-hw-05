@@ -5,7 +5,7 @@ const multer = require('multer')
 const path = require('path')
 const { v4: uuidV4 } = require('uuid')
 
-const { controllerWrapper, authMiddleware } = require("../../middlewares")
+const { controllerWrapper, authMiddleware, jimpResize250QualBWMiddleware } = require("../../middlewares")
 
 const { filesControllers: ctrl } = require("../../controllers")
 
@@ -63,22 +63,22 @@ const uploadMiddleware = multer({ storage });
 
 
 //! Вызов ф-ции Jimp
-const jimpResize250QualBWMiddleware = async (req, res, next) => {
-    console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
-    console.log("");
+// const jimpResize250QualBWMiddleware = async (req, res, next) => {
+//     console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
+//     console.log("");
 
-    const { path: tempUpload, destination, originalname } = req.file;
+//     const { path: tempUpload, destination, originalname } = req.file;
 
-    console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
-    console.log("");
-    console.log("ПОЛНЫЙ путь к временной папке tmp -> destination:".bgYellow.black, destination.yellow); //!;
-    console.log("");
-    console.log("ПОЛНЫЙ путь к ориг. файлу аватара во временной папке tmp -> tempUpload:".bgBlue, tempUpload.red); //!;
-    console.log("");
-    // await resizeAvatarJimp(avatarTempURL);
-    await resizeAvatarJimp(tempUpload);
-    next();
-};
+//     console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
+//     console.log("");
+//     console.log("ПОЛНЫЙ путь к временной папке tmp -> destination:".bgYellow.black, destination.yellow); //!;
+//     console.log("");
+//     console.log("ПОЛНЫЙ путь к ориг. файлу аватара во временной папке tmp -> tempUpload:".bgBlue, tempUpload.red); //!;
+//     console.log("");
+//     // await resizeAvatarJimp(avatarTempURL);
+//     await resizeAvatarJimp(tempUpload);
+//     next();
+// };
 
 
 //! 1. POST --> api/files/upload
