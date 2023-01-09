@@ -13,20 +13,29 @@ app.use(express.json());
 app.use(express.static("public")); //! Чтобы Express мог раздавать статические файлы из папки "/public"
 
 //-------------------------------------------------------------------------------------
-const tempDir = path.join(__dirname, "tmp");
-console.log("tempDir:", tempDir.blue);
-const productsDir = path.join(__dirname, "public", "products");
+//! Путь к временной папке tmp
+console.log("");
+const tempDir = path.join(__dirname, "tmp"); // путь к временной папке
+console.log("Путь к временной папке -> tempDir:".bgBlue, tempDir.blue);
+console.log("");
 
-//! Настройки сохранения файла:
+//! Путь к папке назначения
+const productsDir = path.join(__dirname, "public", "products"); // путь к папке назначения
+console.log("Путь к папке назначения -> productsDir:".bgCyan, productsDir.cyan);
+console.log("")
+
+
+//! multer-Настройки сохранения файла:
 const multerConfig = multer.diskStorage({
+  //! временная папка для сохранения файла:
   destination: (req, file, cb) => {
-    cb(null, tempDir);
+    cb(null, tempDir); //! сохраняем файл и передаем обработку дальше ( типа next() )
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    cb(null, file.originalname); //! передаем обработку дальше ( типа next() )
   },
   limits: {
-    // fileSize: 2048
+    // fileSize: 2048 //! ограничение размера файла
   }
 });
 
