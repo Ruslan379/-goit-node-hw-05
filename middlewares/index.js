@@ -11,5 +11,6 @@ module.exports = {
     controllerWrapper,
     isValidId,
     authMiddleware,
+    uploadMiddleware,
     jimpResize250QualBWMiddleware,
 }
