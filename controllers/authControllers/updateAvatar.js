@@ -4,6 +4,7 @@ const fs = require("fs/promises");
 
 //! Jimp
 const Jimp = require('jimp');
+const { resizeAvatarJimp } = require("../../helpers")
 
 
 //----------------------------------------------------------------------------------
@@ -68,9 +69,11 @@ const updateAvatar = async (req, res) => {
     //         .writeAsync(avatarTempURL); //! записывает измененный image в E:\GoIT\Code\goit-node-hw-05\tmp\
     // }
 
-    //! Вызов ф-ции Jimp
-    await resizeAvatar(tempUpload); //? 2-var
-    // await resizeAvatar(tempUpload, avatarTempURL); //? 1-var
+    //! Вызов ф-ции Jimp ЛОКАЛЬНО
+    // await resizeAvatar(tempUpload); //? 2-var
+    // // await resizeAvatar(tempUpload, avatarTempURL); //? 1-var
+    //! Вызов ф-ции Jimp из файла
+    await resizeAvatarJimp(tempUpload); //? 2-var
 
     console.log("");
     console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
