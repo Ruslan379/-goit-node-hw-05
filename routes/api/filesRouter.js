@@ -21,6 +21,7 @@ const FILE_DIR = path.resolve("./public/output")
 console.log("ПОЛНЫЙ путь к временной папке для всех файлов-аватарок -> FILE_DIR:".bgCyan.black, FILE_DIR.cyan); //!;
 console.log("");
 
+let avatarTempURL = "";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -37,8 +38,10 @@ const storage = multer.diskStorage({
         console.log("avatarNewJimpName:".bgBlue, avatarNewJimpName.blue); //!;
 
         //! ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp
-        const avatarTempURL = path.join(FILE_DIR, avatarNewJimpName);
+        avatarTempURL = path.join(FILE_DIR, avatarNewJimpName);
         console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
+        console.log("");
+
 
         //! Вызов ф-ции Jimp
         // async () => {
@@ -57,16 +60,20 @@ const storage = multer.diskStorage({
 
 const uploadMiddleware = multer({ storage });
 
+
+
 //! Вызов ф-ции Jimp
-// async () => {
-//     console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
-//     await resizeAvatarJimp(avatarTempURL)
-// };
+const resizeJimpMiddleware = async (req, res, next) => {
+    console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
+    console.log("");
+    await resizeAvatarJimp(avatarTempURL);
+    next();
+};
 
 
 //! 1. POST --> api/files/upload
 //? content-type: multipart/form-data
-router.post("/upload", uploadMiddleware.single("avatar"), controllerWrapper(ctrl.uploadController))
+router.post("/upload", uploadMiddleware.single("avatar"), resizeJimpMiddleware, controllerWrapper(ctrl.uploadController))
 
 //! 2. use --> api/files/download
 // router.get("/download", express.static(FILE_DIR)) //! так НЕ РАБОТАЕТ!!! --> "Route not found"
