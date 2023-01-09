@@ -9,6 +9,8 @@ const { controllerWrapper, authMiddleware } = require("../../middlewares")
 
 const { filesControllers: ctrl } = require("../../controllers")
 
+const { resizeAvatarJimp } = require("../../helpers")
+
 
 //----------------------------------------------------------------------------
 //! 0. Проверка токена
@@ -16,6 +18,8 @@ const { filesControllers: ctrl } = require("../../controllers")
 
 
 const FILE_DIR = path.resolve("./public/output")
+console.log("ПОЛНЫЙ путь к папке назначения всех файлов-аватарок -> FILE_DIR:".bgCyan.black, FILE_DIR.cyan); //!;
+console.log("");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,7 +31,10 @@ const storage = multer.diskStorage({
         // cb(null, `${filename}.${extension}`);
         //! чтобы избежать одинаковые названия файлов при повторной загруке одного и того же файла
         const [filename, extension] = file.originalname.split(".");
-        cb(null, `${filename + "_" + uuidV4()}.${extension}`);
+        const newName = `${filename + "_" + uuidV4()}.${extension}`
+        console.log("newName:".bgBlue, FILE_DIR.blue); //!;
+        // cb(null, `${filename + "_" + uuidV4()}.${extension}`);
+        cb(null, newName);
     },
     limits: {
         // fileSize: 11048576,
