@@ -4,7 +4,7 @@ const fs = require("fs/promises");
 
 //! Jimp
 const Jimp = require('jimp');
-const { resizeAvatarJimp } = require("../../helpers")
+const { resizeAvatarJimp } = require("../../helpers") //? 3-var
 
 
 //----------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ const updateAvatar = async (req, res) => {
     // await resizeAvatar(tempUpload); //? 2-var
     // // await resizeAvatar(tempUpload, avatarTempURL); //? 1-var
     //! Вызов ф-ции Jimp из файла
-    await resizeAvatarJimp(tempUpload); //? 2-var
+    await resizeAvatarJimp(tempUpload); //? 3-var
 
     console.log("");
     console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
