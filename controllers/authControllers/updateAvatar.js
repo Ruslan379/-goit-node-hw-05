@@ -4,8 +4,14 @@ const fs = require("fs/promises");
 
 //! Jimp
 const Jimp = require('jimp');
-const { resizeAvatarJimp } = require("../../helpers") //? 3-var
+const { changeImageByJimp } = require("../../helpers") //? 3-var
 
+const {
+    resize400ByJimp,
+    resize250Qual60ByJimp,
+    resize250GreyByJimp,
+    resize250Qual60GreyByJimp
+} = changeImageByJimp
 
 //----------------------------------------------------------------------------------
 //! Jimp
@@ -72,8 +78,14 @@ const updateAvatar = async (req, res) => {
     //! Вызов ф-ции Jimp ЛОКАЛЬНО
     // await resizeAvatar(tempUpload); //? 2-var
     // // await resizeAvatar(tempUpload, avatarTempURL); //? 1-var
+    //? 3-var
     //! Вызов ф-ции Jimp из файла
-    await resizeAvatarJimp(tempUpload); //? 3-var
+    // await resize400ByJimp(tempUpload);
+    // await resize250Qual60ByJimp(tempUpload); 
+    // await resize250GreyByJimp(tempUpload); 
+    await resize250Qual60GreyByJimp(tempUpload);
+
+
 
     console.log("");
     console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;

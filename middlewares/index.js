@@ -3,7 +3,7 @@ const controllerWrapper = require("./controllerWrapper")
 const isValidId = require("./isValidId")
 const authMiddleware = require("./authMiddleware")
 const uploadMiddleware = require("./uploadMiddleware")
-const jimpResize250QualBWMiddleware = require("./jimpResize250QualBWMiddleware")
+const resize250Qual60GreyByJimpMiddleware = require("./resize250Qual60GreyByJimpMiddleware")
 
 
 module.exports = {
@@ -12,5 +12,5 @@ module.exports = {
     isValidId,
     authMiddleware,
     uploadMiddleware,
-    jimpResize250QualBWMiddleware,
+    resize250Qual60GreyByJimpMiddleware,
 }

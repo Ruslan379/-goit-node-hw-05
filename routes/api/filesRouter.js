@@ -5,7 +5,7 @@ const multer = require('multer')
 const path = require('path')
 const { v4: uuidV4 } = require('uuid')
 
-const { controllerWrapper, authMiddleware, jimpResize250QualBWMiddleware } = require("../../middlewares")
+const { controllerWrapper, authMiddleware, resize250Qual60GreyByJimpMiddleware } = require("../../middlewares")
 
 const { filesControllers: ctrl } = require("../../controllers")
 
@@ -64,7 +64,7 @@ const uploadMiddleware = multer({ storage });
 
 
 //todo --> Вызов ф-ции-Middleware  - Jimp
-// const jimpResize250QualBWMiddleware = async (req, res, next) => {
+// const resize250Qual60GreyByJimpMiddleware = async (req, res, next) => {
 //     console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
 //     console.log("");
 
@@ -87,7 +87,7 @@ const uploadMiddleware = multer({ storage });
 router.post(
     "/upload",
     uploadMiddleware.single("avatar"),
-    jimpResize250QualBWMiddleware,
+    resize250Qual60GreyByJimpMiddleware,
     controllerWrapper(ctrl.uploadController)
 )
 

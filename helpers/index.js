@@ -1,9 +1,9 @@
 const handleSchemaValidationErrors = require("./handleSchemaValidationErrors.js")
 const RequestError = require("./RequestError");
-const resizeAvatarJimp = require("./resizeAvatarJimp");
+const changeImageByJimp = require("./changeImageByJimp");
 
 module.exports = {
     handleSchemaValidationErrors,
     RequestError,
-    resizeAvatarJimp
+    changeImageByJimp,
 }

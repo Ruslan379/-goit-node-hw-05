@@ -1,7 +1,13 @@
-const { resizeAvatarJimp } = require("../helpers")
+const { changeImageByJimp } = require("../helpers")
 
+const {
+    resize400ByJimp,
+    resize250Qual60ByJimp,
+    resize250GreyByJimp,
+    resize250Qual60GreyByJimp
+} = changeImageByJimp
 
-const jimpResize250QualBWMiddleware = async (req, res, next) => {
+const resize250Qual60GreyByJimpMiddleware = async (req, res, next) => {
     console.log("");
 
     const { path: tempUpload, destination, originalname } = req.file;
@@ -13,8 +19,10 @@ const jimpResize250QualBWMiddleware = async (req, res, next) => {
     console.log("ПОЛНЫЙ путь к ориг. файлу аватара во временной папке tmp -> tempUpload:".bgBlue, tempUpload.red); //!;
     console.log("");
 
-    await resizeAvatarJimp(tempUpload);
+    await resize250Qual60GreyByJimp(tempUpload);
     next();
 };
 
-module.exports = jimpResize250QualBWMiddleware;
+module.exports = resize250Qual60GreyByJimpMiddleware;
+
+// jimpResize250QualBWMiddleware --> resize250Qual60GreyByJimpMiddleware
