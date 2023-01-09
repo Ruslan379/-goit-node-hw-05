@@ -66,7 +66,9 @@ const uploadMiddleware = multer({ storage });
 const resizeJimpMiddleware = async (req, res, next) => {
     console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
     console.log("");
+
     const { path: tempUpload, destination, originalname } = req.file;
+
     console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
     console.log("");
     console.log("ПОЛНЫЙ путь к временной папке tmp -> destination:".bgYellow.black, destination.yellow); //!;
