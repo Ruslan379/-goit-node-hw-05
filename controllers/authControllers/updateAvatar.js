@@ -7,7 +7,7 @@ const Jimp = require('jimp');
 
 
 //----------------------------------------------------------------------------------
-//! Jimp-2
+//! Jimp
 // async function resizeAvatar(tempUpload, avatarTempURL) { //? 1-var
 async function resizeAvatar(tempUpload) { //? 2-var
     //! Read the image.
@@ -47,16 +47,16 @@ const updateAvatar = async (req, res) => {
     console.log("____________________________________________");
 
     //----------------------------------------------------------------------------
-    //! Jimp
+    //! Jimp 
     console.log("");
     const avatarNewJimpName = `Jimp_250x250_${avatarNewName}`;
     console.log("avatarNewJimpName:".bgMagenta, avatarNewJimpName.bgGreen.red); //!;
     console.log("");
 
-    //! НЕ НУЖЕН С Jimp
+    //! НЕ НУЖЕН С Jimp + 2-var
     //! ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp
-    const avatarTempURL = path.join(destination, avatarNewJimpName);
-    console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
+    // const avatarTempURL = path.join(destination, avatarNewJimpName);
+    // console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
 
 
     // async function resizeAvatar() {
@@ -90,7 +90,7 @@ const updateAvatar = async (req, res) => {
         // await fs.rename(tempUpload, avatarTempURL); //???? 1-var - не перезаписывает Jimp-файлу аватара
         // await fs.rename(avatarTempURL, resultUpload); //? 1-var
 
-
+        //! ОТНОСИТЕЛЬНЫЙ путь к новому Jimp-файлу аватара в папке назначения
         const avatarURL = path.join("public", "avatars", avatarNewJimpName);
         console.log("ОТНОСИТЕЛЬНЫЙ путь к новому Jimp-файлу аватара в папке назначения -> avatarURL:".bgGreen.black, avatarURL.green); //!;
         console.log("");
