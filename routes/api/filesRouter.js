@@ -53,7 +53,7 @@ const avatarTempURL = path.join(FILE_DIR, avatarNewJimpName);
 console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
 
 //! Вызов ф-ции Jimp
-resizeAvatarJimp(avatarTempURL); //? 2-var
+async () => await resizeAvatarJimp(avatarTempURL); //? 2-var
 
 //! 1. POST --> api/files/upload
 //? content-type: multipart/form-data
