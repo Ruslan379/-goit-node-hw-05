@@ -21,6 +21,9 @@ const FILE_DIR = path.resolve("./public/output")
 console.log("ПОЛНЫЙ путь к папке назначения всех файлов-аватарок -> FILE_DIR:".bgCyan.black, FILE_DIR.cyan); //!;
 console.log("");
 
+let avatarNewJimpName = ""
+
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, FILE_DIR)
@@ -31,18 +34,26 @@ const storage = multer.diskStorage({
         // cb(null, `${filename}.${extension}`);
         //! чтобы избежать одинаковые названия файлов при повторной загруке одного и того же файла
         const [filename, extension] = file.originalname.split(".");
-        const newName = `${filename + "_" + uuidV4()}.${extension}`
-        console.log("newName:".bgBlue, FILE_DIR.blue); //!;
+        const avatarNewName = `${filename + "_" + uuidV4()}.${extension}`
+        avatarNewJimpName = `Jimp_250x250_${avatarNewName}`;
+        console.log("avatarNewJimpName:".bgBlue, avatarNewJimpName.blue); //!;
+
         // cb(null, `${filename + "_" + uuidV4()}.${extension}`);
-        cb(null, newName);
+        cb(null, avatarNewJimpName);
     },
     limits: {
         // fileSize: 11048576,
     },
 });
 
-
 const uploadMiddleware = multer({ storage });
+
+//! ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp
+const avatarTempURL = path.join(FILE_DIR, avatarNewJimpName);
+console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
+
+//! Вызов ф-ции Jimp
+resizeAvatarJimp(avatarTempURL); //? 2-var
 
 //! 1. POST --> api/files/upload
 //? content-type: multipart/form-data
