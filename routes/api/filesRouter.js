@@ -38,6 +38,10 @@ const storage = multer.diskStorage({
         avatarNewJimpName = `Jimp_250x250_${avatarNewName}`;
         console.log("avatarNewJimpName:".bgBlue, avatarNewJimpName.blue); //!;
 
+        //! ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp
+        const avatarTempURL = path.join(FILE_DIR, avatarNewJimpName);
+        console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
+
         // cb(null, `${filename + "_" + uuidV4()}.${extension}`);
         cb(null, avatarNewJimpName);
     },
@@ -53,7 +57,10 @@ const avatarTempURL = path.join(FILE_DIR, avatarNewJimpName);
 console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке tmp -> avatarTempURL:".bgRed, avatarTempURL.bgBlue); //!;
 
 //! Вызов ф-ции Jimp
-async () => await resizeAvatarJimp(avatarTempURL); //? 2-var
+async () => {
+
+    await resizeAvatarJimp(avatarTempURL)
+};
 
 //! 1. POST --> api/files/upload
 //? content-type: multipart/form-data
