@@ -8,7 +8,8 @@ const Jimp = require('jimp');
 
 //----------------------------------------------------------------------------------
 //! Jimp-2
-async function resizeAvatar(tempUpload) {
+// async function resizeAvatar(tempUpload, avatarTempURL) { //? 1-var
+async function resizeAvatar(tempUpload) { //? 2-var
     //! Read the image.
     const image = await Jimp.read(tempUpload);
     //! 2-вариант
@@ -16,7 +17,8 @@ async function resizeAvatar(tempUpload) {
         .resize(250, 250)
         .quality(60) // set JPEG quality
         .greyscale() // set greyscale
-        .writeAsync(tempUpload); //! записывает измененный image во временную папку E:\GoIT\Code\goit-node-hw-05\tmp\
+        .writeAsync(tempUpload); //? 2-var  -  записывает ИЗМЕНЕННЫЙ аватар-image под ТЕМ ЖЕ ИМЕНЕМ во временную папку E:\GoIT\Code\goit-node-hw-05\tmp\
+    // .writeAsync(avatarTempURL); //? 1-var  -  записывает ИЗМЕНЕННЫЙ аватар-image под НОВЫМ ИМЕНЕМ во временную папку E:\GoIT\Code\goit-node-hw-05\tmp\
 };
 
 //! ПОЛНЫЙ путь к папке назначения всех файлов-аватарок
@@ -67,7 +69,8 @@ const updateAvatar = async (req, res) => {
     // }
 
     //! Вызов ф-ции Jimp
-    await resizeAvatar(tempUpload);
+    await resizeAvatar(tempUpload); //? 2-var
+    // await resizeAvatar(tempUpload, avatarTempURL); //? 1-var
 
     console.log("");
     console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
@@ -83,9 +86,9 @@ const updateAvatar = async (req, res) => {
         console.log("");
 
         //! ПЕРЕИМЕНОВАНИЕ и ПЕРЕМЕЩЕНИЕ файла аватара с временноцй папки tmp в папку назначения E:\GoIT\Code\goit-node-hw-05\public\avatars
-        await fs.rename(tempUpload, resultUpload); //! old
-        // await fs.rename(tempUpload, avatarTempURL);
-        // await fs.rename(avatarTempURL, resultUpload);
+        await fs.rename(tempUpload, resultUpload); //? 2-var
+        // await fs.rename(tempUpload, avatarTempURL); //???? 1-var - не перезаписывает Jimp-файлу аватара
+        // await fs.rename(avatarTempURL, resultUpload); //? 1-var
 
 
         const avatarURL = path.join("public", "avatars", avatarNewJimpName);
