@@ -63,7 +63,7 @@ const uploadMiddleware = multer({ storage });
 
 
 //! Вызов ф-ции Jimp
-const resizeJimpMiddleware = async (req, res, next) => {
+const jimpResize250QualBWMiddleware = async (req, res, next) => {
     console.log("ПОЛНЫЙ путь к новому Jimp-файлу аватара во временной папке output -> avatarTempURL:".bgWhite.black, avatarTempURL.bgBlue); //!;
     console.log("");
 
@@ -83,7 +83,7 @@ const resizeJimpMiddleware = async (req, res, next) => {
 
 //! 1. POST --> api/files/upload
 //? content-type: multipart/form-data
-router.post("/upload", uploadMiddleware.single("avatar"), resizeJimpMiddleware, controllerWrapper(ctrl.uploadController))
+router.post("/upload", uploadMiddleware.single("avatar"), jimpResize250QualBWMiddleware, controllerWrapper(ctrl.uploadController))
 
 //! 2. use --> api/files/download
 // router.get("/download", express.static(FILE_DIR)) //! так НЕ РАБОТАЕТ!!! --> "Route not found"
