@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.static("public")); //! Чтобы Express мог раздавать статические файлы из папки "/public"
 
 
-//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//!++++++++++++++++++++++++++ static ++++++++++++++++++++++++++++++
 const FILE_DIR = path.resolve("./public/output")
 
 //! serve static
