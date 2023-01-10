@@ -48,17 +48,15 @@ const updateAvatar = async (req, res) => {
 
     const { id: userId } = req.user
 
-    //! Уже не надо
-    // const avatarNewName = `${userId}_${originalname}`;
-    // console.log("avatarNewName:".bgMagenta, avatarNewName.bgGreen.red); //!;
-    // console.log("");
+    const avatarNewName = `${userId}_${originalname}`;
+    console.log("avatarNewName:".bgMagenta, avatarNewName.bgGreen.red); //!;
+    console.log("");
     console.log("____________________________________________");
 
     //----------------------------------------------------------------------------
     //! Jimp 
     console.log("");
-    // const avatarNewJimpName = `Jimp_250x250_${avatarNewName}`;
-    const avatarNewJimpName = `Jimp_${userId}_${originalname}`;
+    const avatarNewJimpName = `Jimp_250x250_${avatarNewName}`;
     console.log("avatarNewJimpName:".bgMagenta, avatarNewJimpName.bgGreen.red); //!;
     console.log("");
 
@@ -85,13 +83,13 @@ const updateAvatar = async (req, res) => {
     // await resize400ByJimp(tempUpload);
     // await resize250Qual60ByJimp(tempUpload); 
     // await resize250GreyByJimp(tempUpload); 
-    // await resize250Qual60GreyByJimp(tempUpload); //!!!!!!!!!!!!!!!!!!!!!!!
+    await resize250Qual60GreyByJimp(tempUpload);
 
 
-    //! Уже не надо
-    // console.log("");
-    // console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
-    // console.log("");
+
+    console.log("");
+    console.log("ОБЪЕКТ -> req.file:".red, req.file); //!;
+    console.log("");
     //----------------------------------------------------------------------------
 
 
