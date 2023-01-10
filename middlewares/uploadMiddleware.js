@@ -10,7 +10,7 @@ const tempDir = path.join(__dirname, "../", "tmp");
 const multerConfig = multer.diskStorage({
     //! временная папка для сохранения файла:
     destination: (req, file, cb) => {
-        cb(null, tempDir) //! сохраняем файл и передаем обработку дальше ( типа next() )
+        cb(null, tempDir) //! выбираем папку для сохранения файла и передаем обработку дальше ( типа next() )
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname) //! сохраняем файл с именем originalname и передаем обработку дальше ( типа next() )
