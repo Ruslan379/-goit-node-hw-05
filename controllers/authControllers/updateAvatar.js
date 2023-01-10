@@ -81,7 +81,10 @@ const updateAvatar = async (req, res) => {
     // await resizeAvatar(tempUpload); //? 2-var
     // // await resizeAvatar(tempUpload, avatarTempURL); //? 1-var
     //? 3-var
-    //! Вызов ф-ции Jimp из файла
+    //! Вызов ф-ции Jimp из файла:
+    //* включить одну из строчек,
+    //* если НЕ ИСПОЛЬЗУЕТСЯ resize250Qual60GreyByJimpMiddleware
+    //* в маршруте №6 (router.patch("/avatars", ...)) в authRouter.js
     // await resize400ByJimp(tempUpload);
     // await resize250Qual60ByJimp(tempUpload); 
     // await resize250GreyByJimp(tempUpload); 

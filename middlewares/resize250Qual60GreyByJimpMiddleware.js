@@ -29,7 +29,7 @@ const resize250Qual60GreyByJimpMiddleware = async (req, res, next) => {
     // await resize250GreyByJimp(tempUpload);
     await resize250Qual60GreyByJimp(tempUpload);
 
-    //* ----------- ПЕРЕИМЕННОВАНИЕ файла аватарки в файл Jimp_<оригинальное имя файла> -------------
+    //* ----------- ПЕРЕИМЕННОВАНИЕ файла аватарки в файл Jimp1_<оригинальное имя файла> -------------
     // //! Новое имя Jimp-файла аватарки
     // const avatarNewJimpName = `Jimp1_${originalname}`;
 
