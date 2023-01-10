@@ -32,10 +32,10 @@ const multerConfig = multer.diskStorage({
     cb(null, tempDir); //! сохраняем файл и передаем обработку дальше ( типа next() )
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname); //! передаем обработку дальше ( типа next() )
+    cb(null, file.originalname); //! сохраняем файл с именем originalname и передаем обработку дальше ( типа next() )
   },
   limits: {
-    // fileSize: 2048 //! ограничение размера файла
+    // fileSize: 2048 //! ограничение размера загружаемого файла
   }
 });
 
