@@ -102,4 +102,4 @@ app.get("/api/products", async (req, res) => {
 
 const PORT = 3001
 
-app.listen(PORT, () => console.log(`Server-2 is running on the port: ${PORT}`.bgGreen.black));
+app.listen(PORT, () => console.log(`Server-2 is running on the port: ${PORT}`.bgGreen.red));
