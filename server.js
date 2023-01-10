@@ -20,9 +20,28 @@ const { DB_HOST, PORT = 3000 } = process.env;
 //   });
 
 //! 2-вариант NEW
-async function main() {
+// async function main() {
+//   try {
+//     await mongoose.connect(DB_HOST);
+//     app.listen(PORT);
+//     console.log(`Server is running on the port: ${PORT}`.bgGreen.red);
+//     console.log(`Start HW-5 --> DRAFT`.bgRed.green);
+//     console.log("Database connection successful".bgBlue.yellow);
+//     console.log("---------------------------------------".yellow);
+//   } catch (error) {
+//     console.log(error.message);
+//     process.exit(1); //? закрыть все неиспользуемые процессы
+//   }
+// };
+// main();
+
+
+//! 3-вариант NEW
+// async function main() {
+(() => {
   try {
-    await mongoose.connect(DB_HOST);
+    // await mongoose.connect(DB_HOST);
+    mongoose.connect(DB_HOST);
     app.listen(PORT);
     console.log(`Server is running on the port: ${PORT}`.bgGreen.red);
     console.log(`Start HW-5 --> DRAFT`.bgRed.green);
@@ -32,6 +51,5 @@ async function main() {
     console.log(error.message);
     process.exit(1); //? закрыть все неиспользуемые процессы
   }
-};
+})();
 
-main();
