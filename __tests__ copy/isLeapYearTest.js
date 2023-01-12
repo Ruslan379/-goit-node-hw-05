@@ -26,7 +26,7 @@ false - ошибка 'Year must be number'
 [] - ошибка 'Year must be number'
 */
 
-const isLeapYear = require("../__tests__ copy/funcs/isLeapYear");
+const isLeapYear = require("./funcs/isLeapYear");
 
 describe("test isLeapYear function", () => {
     test("2008 - true", () => {
