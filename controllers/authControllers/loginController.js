@@ -1,3 +1,4 @@
+require("colors");
 const { User } = require("../../models/userModel.js");
 const { Unauthorized } = require("http-errors");
 
@@ -11,7 +12,14 @@ const { JWT_SECRET } = process.env;
 //-----------------------------------------------------------------------------
 const loginController = async (req, res) => {
     const { email, password } = req.body;
+
+    console.log("email:", email); //!
+    console.log("password:", password); //!
+    console.log("User:", User); //!
+
     let user = await User.findOne({ email });
+
+    console.log("user:", user); //!
 
     //! ОШИБКА Unauthorized - если пароль или email неверный
     //? 1-вариант (разнные соообщения об ошибках email или password)

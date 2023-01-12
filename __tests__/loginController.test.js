@@ -1,4 +1,4 @@
-// require("colors");
+require("colors");
 // const mongoose = require("mongoose");
 // mongoose.set("strictQuery", false); //!!!!!
 
@@ -22,7 +22,7 @@ const app = express();
 // app.post("/localhost:3000/api/users/login", loginController);
 
 
-describe("test loginController", () => {
+describe("Test loginController", () => {
     //! 1
     // beforeAll(() => app.listen(3000));
 
@@ -80,7 +80,7 @@ describe("test loginController", () => {
         const mRes = {};
         // const mockNext = jest.fn();
 
-        // loginController(mReq, mRes);
+        loginController(mReq, mRes);
         // loginController(mReq, mRes, mockNext);
         // app.post("/api/users/login", loginController);
 
@@ -88,14 +88,14 @@ describe("test loginController", () => {
         //---------------------------------------------------------
         // const response = await request(app).post("/login", loginController(mReq, mRes)); //!!!
         // const response = await request(app).post("http://localhost:3000/api/users/login", loginController(mReq, mRes));
-        const response = await request(app).post("localhost:3000/api/users/login", loginController(mReq, mRes));  //!  POST /:63963localhost/api/users/login 404 3.986 ms - 29  ------  POST /:58341localhost/api/users/login 404 4.394 ms - 29
+        // const response = await request(app).post("localhost:3000/api/users/login", loginController(mReq, mRes));  //!  POST /:63963localhost/api/users/login 404 3.986 ms - 29  ------  POST /:58341localhost/api/users/login 404 4.394 ms - 29
 
 
         // console.log("TEST --> response:", response);
         // console.log(response);
 
-        expect(response.status).toBe(200);
-        // expect(mRes.status).toEqual(200);
+        // expect(response.status).toBe(200);
+        expect(mRes.status).toEqual(200);
 
     });
 })
