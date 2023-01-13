@@ -53,8 +53,20 @@ const arr3 = { a: 1, b: 2, c: 3 };
 const arr4 = { a: 1, b: 2, c: 3, d: 4 };
 const arr5 = { a: 1, b: 2, c: 3, d: 4, e: 5 }
 
+const arr9 = {
+  a: 1,
+  b: 2,
+  c: 3,
+  d: 4,
+  e: 5,
+  f: 6,
+  g: 7,
+  h: 8,
+  i: 9
+}
+
 //! Количество входных данных: n
-const n = Object.keys(arr5).length; //4
+const n = Object.keys(arr9).length; //9
 // const n = 12
 console.log("Количество входных данных --> n =", n);
 
