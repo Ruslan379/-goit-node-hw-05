@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const { loginController } = require('../controllers/authControllers');
-const { User } = require('../../services/schemas/User');
+const { User } = require('../models/contactModel.js');
 const jwt = require('jsonwebtoken');
 
 describe('usersControllers', () => {
@@ -14,7 +14,14 @@ describe('usersControllers', () => {
         beforeEach(() => {
             email = "avatar222@i.ua";
             password = "avatar222";
-            mockRequest = { body: { email, password } };
+
+            mockRequest = {
+                body: {
+                    email,
+                    password
+                }
+            };
+
             mockResponse = {
                 status: jest.fn(function () {
                     return this;
@@ -23,6 +30,7 @@ describe('usersControllers', () => {
                     return this;
                 })
             };
+
             mockNext = jest.fn();
         });
 
