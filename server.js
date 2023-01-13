@@ -45,28 +45,30 @@ y = x - y;
 x = x - y;
 console.log("ПОСЛЕ: ", "x =", x, "y =", y); // x = 21 y = 12
 console.log("");
-//-----------------------------------------------------------------------
 
+
+//----------------------------------------------------------------
 const arr2 = { a: 1, b: 2 };
 const arr3 = { a: 1, b: 2, c: 3 };
 const arr4 = { a: 1, b: 2, c: 3, d: 4 };
+const arr5 = { a: 1, b: 2, c: 3, d: 4, e: 5 }
 
 //! Количество входных данных: n
-// const n = Object.keys(arr4).length;
-const n = 5
+const n = Object.keys(arr5).length; //4
+// const n = 12
 console.log("Количество входных данных --> n =", n);
-// console.log("Количество входных данных --> n =", lengthАrr);
 
-//! Вычислительная временная сложность(time complexity)
-const timeComplexity = parseInt(((n + 1) / 2), 10) * 3;
+//! Вычислительная временная сложность(time complexity) --> 1-й вариант
+// const timeComplexity = parseInt(((n + 1) / 2), 10) * 3;
+//! Вычислительная временная сложность(time complexity) --> 2-й вариант
+const timeComplexity = Math.floor(((n + 1) / 2), 10) * 3;
 // const timeComplexity = parseInt(((lengthАrr + 1) / 2), 10) * 3;
 console.log("timeComplexity =", timeComplexity);
-
 
 //! Вычислительная ёмкостная сложность (space complexity)
 const spaceComplexity = 2 * n;
 console.log("spaceComplexity =", spaceComplexity);
-//! +++++++++++++++++++++++++ ITeam ++++++++++++++++++++++++++++
+//! ___________________________ ITeam ____________________________
 
 
 
