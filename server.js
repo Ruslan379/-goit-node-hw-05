@@ -65,9 +65,33 @@ const arr9 = {
   i: 9
 }
 
+const arr9res = {
+  a: 2,
+  b: 1,
+  c: 4,
+  d: 3,
+  e: 6,
+  f: 5,
+  g: 8,
+  h: 7,
+  i: 9
+}
+
+const arr9result = {
+  a: 2,
+  b: 1,
+  c: 4,
+  d: 3,
+  e: 6,
+  f: 5,
+  g: 8,
+  h: 9,
+  i: 7
+}
+
 //! Количество входных данных: n
-const n = Object.keys(arr9).length; //9
-// const n = 12
+// const n = Object.keys(arr9).length; //9
+const n = 2
 console.log("Количество входных данных --> n =", n);
 
 //! Вычислительная временная сложность(time complexity) --> 1-й вариант
