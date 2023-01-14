@@ -90,15 +90,18 @@ const arr9result = {
 }
 
 //! Количество входных данных: n
-// const n = Object.keys(arr9).length; //9
-const n = 2
+const n = Object.keys(arr9).length; //9
+// const n = 9
 console.log("Количество входных данных --> n =", n);
 
-//! Вычислительная временная сложность(time complexity) --> 1-й вариант
+//? 1-й вариант
+//! Вычислительная временная сложность(time complexity) --> 
 // const timeComplexity = parseInt(((n + 1) / 2), 10) * 3;
-//! Вычислительная временная сложность(time complexity) --> 2-й вариант
+
+//? 2-й вариант
+//! Вычислительная временная сложность(time complexity)
 const timeComplexity = Math.floor(((n + 1) / 2), 10) * 3;
-// const timeComplexity = parseInt(((lengthАrr + 1) / 2), 10) * 3;
+
 console.log("timeComplexity =", timeComplexity);
 
 //! Вычислительная ёмкостная сложность (space complexity)
