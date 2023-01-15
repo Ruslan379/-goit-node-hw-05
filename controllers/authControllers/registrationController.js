@@ -46,7 +46,7 @@ const registrationController = async (req, res) => {
     const msg = {
         to: email,
         from: 'nsor@ukr.net', // Use the email address or domain you verified above
-        subject: 'Thank yuo for registration!',
+        subject: 'Thank you for registration!',
         text: 'and easy to do anywhere, even with Node.js',
         html: '<strong>and easy to do anywhere, even with Node.js</strong>',
     };
