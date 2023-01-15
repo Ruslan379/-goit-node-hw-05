@@ -5,6 +5,10 @@ const bcrypt = require("bcryptjs");
 //* gravatar
 const gravatar = require("gravatar");
 
+//? sendgrid
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 
 //-----------------------------------------------------------------------------
 const registrationController = async (req, res) => {
@@ -37,6 +41,16 @@ const registrationController = async (req, res) => {
     //! _______________________ Хеширование и засолка password _________________________
 
     console.log("\nnewUser:".green, newUser); //!
+
+    //? sendgrid
+    const msg = {
+        to: email,
+        from: 'nsor@ukr.net', // Use the email address or domain you verified above
+        subject: 'Thank yuo for registration!',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    await sgMail.send(msg);
 
     res.status(201).json({
         // status: "success",
