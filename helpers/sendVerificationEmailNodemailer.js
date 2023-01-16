@@ -35,7 +35,7 @@ const sendVerificationEmailNodemailer = async (data) => {
 
         const info = await transporter.sendMail(dataNodemailer);
         console.log("");
-        console.log("info".bgCyan.black, info);
+        console.log("info =".bgCyan.black, info);
         console.log("");
         console.log("Email send using Nodemailer success!".bgCyan.black);
         console.log("");
