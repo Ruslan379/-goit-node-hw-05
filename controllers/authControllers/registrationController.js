@@ -6,11 +6,13 @@ const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
 
 //? sendgrid
-const sgMail = require('@sendgrid/mail');
-require("dotenv").config();
-const { SENDGRID_API_KEY } = process.env;
-sgMail.setApiKey(SENDGRID_API_KEY);
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const sgMail = require('@sendgrid/mail');
+// require("dotenv").config();
+// const { SENDGRID_API_KEY } = process.env;
+// sgMail.setApiKey(SENDGRID_API_KEY);
+// // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+const { sendVerificationEmail } = require("../../helpers");
 
 
 //-----------------------------------------------------------------------------
@@ -45,18 +47,27 @@ const registrationController = async (req, res) => {
 
     console.log("\nnewUser:".green, newUser); //!
 
-    //? sendgrid
-    const msg = {
+    //? ------------------- sendgrid -------------------
+    const data = {
         to: email,
-        from: 'nsor@ukr.net', // Use the email address or domain you verified above
-        subject: 'Thank you for registration-2!',
+        // from: 'nsor@ukr.net', // Use the email address or domain you verified above
+        subject: 'Thank you for registration-4!',
         text: 'and easy to do anywhere, even with Node.js',
         html: '<h1>and easy to do anywhere, even with Node.js</h1>',
     };
-    await sgMail.send(msg);
+    sendVerificationEmail(data);
+
+    // const msg = {
+    //     to: email,
+    //     from: 'nsor@ukr.net', // Use the email address or domain you verified above
+    //     subject: 'Thank you for registration-3!',
+    //     text: 'and easy to do anywhere, even with Node.js',
+    //     html: '<h1>and easy to do anywhere, even with Node.js</h1>',
+    // };
+    // await sgMail.send(msg);
+    // console.log("Email send success!".bgGreen.black);
     // console.log("");
-    console.log("Email send success!".bgGreen.black);
-    console.log("");
+    //? ___________________ sendgrid ____________________
 
     res.status(201).json({
         // status: "success",
