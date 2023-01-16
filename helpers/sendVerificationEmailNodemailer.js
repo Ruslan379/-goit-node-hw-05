@@ -6,20 +6,22 @@ const { META_PASSWORD } = process.env;
 //-----------------------------------------------------------------------------
 const USER_EMAIL = "arnov@meta.ua";
 
+// Объект конфигурации META:
+const nodemalierConfig = {
+    host: "smtp.meta.ua",
+    port: 465, // 25, 465, 2255
+    secure: true,
+    auth: {
+        user: USER_EMAIL,
+        pass: META_PASSWORD,
+    }
+};
+
+const transporter = nodemailer.createTransport(nodemalierConfig);
+
+
 const sendVerificationEmailNodemailer = async (data) => {
     try {
-        // Объект конфигурации META:
-        const nodemalierConfig = {
-            host: "smtp.meta.ua",
-            port: 465, // 25, 465, 2255
-            secure: true,
-            auth: {
-                user: USER_EMAIL,
-                pass: META_PASSWORD,
-            }
-        };
-
-        const transporter = nodemailer.createTransport(nodemalierConfig);
 
         // const dataNodemailer = {
         //     to: email,
@@ -34,6 +36,7 @@ const sendVerificationEmailNodemailer = async (data) => {
         await transporter.sendMail(dataNodemailer);
         console.log("Email send using Nodemailer success!".bgCyan.black);
         console.log("");
+        return true;
 
     } catch (error) {
         throw error;

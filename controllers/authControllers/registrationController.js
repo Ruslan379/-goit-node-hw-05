@@ -97,7 +97,7 @@ const registrationController = async (req, res) => {
     const dataNodemailer = {
         to: email,
         // from: 'arnov@meta.ua', //! Use the email address or domain you verified above
-        subject: 'Thank you for registration with Nodemailer-3!',
+        subject: 'Thank you for registration with Nodemailer-4!',
         text: '...and easy to do anywhere, even with Node.js and Nodemailer',
         html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
     };
