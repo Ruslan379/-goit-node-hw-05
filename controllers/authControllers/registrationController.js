@@ -58,19 +58,19 @@ const registrationController = async (req, res) => {
     const dataSendGrid = {
         to: email,
         // from: 'nsor@ukr.net', // Use the email address or domain you verified above
-        subject: 'Thank you for registration-4!',
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<h1>and easy to do anywhere, even with Node.js</h1>',
+        subject: 'Thank you for registration with SendGrid-5!',
+        text: '...and easy to do anywhere, even with Node.js and SendGrid',
+        html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
     };
     // sendVerificationEmail(dataSendGrid); //? отправка подтверждениия (верификации) на email пользователя
 
     //? OLD
     // const msg = {
     //     to: email,
-    //     from: 'nsor@ukr.net', // Use the email address or domain you verified above
-    //     subject: 'Thank you for registration-3!',
-    //     text: 'and easy to do anywhere, even with Node.js',
-    //     html: '<h1>and easy to do anywhere, even with Node.js</h1>',
+    //     from: 'nsor@ukr.net', //! Use the email address or domain you verified above
+    //     subject: 'Thank you for registration with SendGrid-5!',
+    //     text: '...and easy to do anywhere, even with Node.js and SendGrid',
+    //     html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
     // };
     // await sgMail.send(msg);
     // console.log("Email send using SendGrid success!".bgGreen.black);
@@ -94,10 +94,10 @@ const registrationController = async (req, res) => {
 
     const dataNodemailer = {
         to: email,
-        from: 'arnov@meta.ua', // Use the email address or domain you verified above
-        subject: 'Thank you for registration-5!',
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<h1>and easy to do anywhere, even with Node.js</h1>',
+        from: 'arnov@meta.ua', //! Use the email address or domain you verified above
+        subject: 'Thank you for registration with Nodemailer-2!',
+        text: '...and easy to do anywhere, even with Node.js and Nodemailer',
+        html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
     };
 
     await transporter.sendMail(dataNodemailer);
