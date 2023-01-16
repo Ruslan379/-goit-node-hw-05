@@ -1,4 +1,3 @@
-//? sendgrid
 const sgMail = require('@sendgrid/mail');
 require("dotenv").config();
 const { SENDGRID_API_KEY } = process.env;
@@ -8,7 +7,7 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 
 //-----------------------------------------------------------------------------
 
-const sendVerificationEmail = async (data) => {
+const sendVerificationEmailSendGrid = async (data) => {
     try {
         // const msg = {
         //     to: email,
@@ -26,5 +25,5 @@ const sendVerificationEmail = async (data) => {
     }
 };
 
-module.exports = sendVerificationEmail
+module.exports = sendVerificationEmailSendGrid
 

@@ -1,12 +1,14 @@
 const handleSchemaValidationErrors = require("./handleSchemaValidationErrors.js")
 const RequestError = require("./RequestError");
 const changeImageByJimp = require("./changeImageByJimp");
-const sendVerificationEmail = require("./sendVerificationEmail");
+const sendVerificationEmailSendGrid = require("./sendVerificationEmailSendGrid");
+const sendVerificationEmailNodemailer = require("./sendVerificationEmailNodemailer");
 
 
 module.exports = {
     handleSchemaValidationErrors,
     RequestError,
     changeImageByJimp,
-    sendVerificationEmail,
+    sendVerificationEmailSendGrid,
+    sendVerificationEmailNodemailer,
 }

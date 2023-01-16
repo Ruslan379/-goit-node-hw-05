@@ -12,13 +12,15 @@ const gravatar = require("gravatar");
 // sgMail.setApiKey(SENDGRID_API_KEY);
 // // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const { sendVerificationEmail } = require("../../helpers");
+const { sendVerificationEmailSendGrid } = require("../../helpers");
 //? _______________________ SendGrid _______________________
 
 //todo ------------------- Nodemailer -------------------
-const nodemailer = require("nodemailer");
-require("dotenv").config();
-const { META_PASSWORD } = process.env;
+// const nodemailer = require("nodemailer");
+// require("dotenv").config();
+// const { META_PASSWORD } = process.env;
+
+const { sendVerificationEmailNodemailer } = require("../../helpers");
 //todo ___________________ Nodemailer ____________________
 
 
@@ -62,7 +64,7 @@ const registrationController = async (req, res) => {
         text: '...and easy to do anywhere, even with Node.js and SendGrid',
         html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
     };
-    // sendVerificationEmail(dataSendGrid); //? отправка подтверждениия (верификации) на email пользователя
+    // sendVerificationEmailSendGrid(dataSendGrid); //? отправка подтверждениия (верификации) на email пользователя
 
     //? OLD
     // const msg = {
@@ -79,33 +81,36 @@ const registrationController = async (req, res) => {
 
 
     //todo ------------------- Nodemailer -------------------
-    // Объект конфикурации META:
-    const nodemalierConfig = {
-        host: "smtp.meta.ua",
-        port: 465, // 25, 465, 2255
-        secure: true,
-        auth: {
-            user: "arnov@meta.ua",
-            pass: META_PASSWORD,
-        }
-    };
+    // // Объект конфигурации META:
+    // const nodemalierConfig = {
+    //     host: "smtp.meta.ua",
+    //     port: 465, // 25, 465, 2255
+    //     secure: true,
+    //     auth: {
+    //         user: "arnov@meta.ua",
+    //         pass: META_PASSWORD,
+    //     }
+    // };
 
-    const transporter = nodemailer.createTransport(nodemalierConfig);
+    // const transporter = nodemailer.createTransport(nodemalierConfig);
 
     const dataNodemailer = {
         to: email,
-        from: 'arnov@meta.ua', //! Use the email address or domain you verified above
-        subject: 'Thank you for registration with Nodemailer-2!',
+        // from: 'arnov@meta.ua', //! Use the email address or domain you verified above
+        subject: 'Thank you for registration with Nodemailer-3!',
         text: '...and easy to do anywhere, even with Node.js and Nodemailer',
         html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
     };
 
-    await transporter.sendMail(dataNodemailer);
-    console.log("Email send using Nodemailer success!".bgCyan.black);
-    console.log("");
-    // .then(() => console.log("Email send using Nodemailer success!".bgCyan.black))
-    // .catch(error => console.log(error.message));
+    // await transporter.sendMail(dataNodemailer);
+    // console.log("Email send using Nodemailer success!".bgCyan.black);
+    // console.log("");
+    // // .then(() => console.log("Email send using Nodemailer success!".bgCyan.black))
+    // // .catch(error => console.log(error.message));
+
+    sendVerificationEmailNodemailer(dataNodemailer); //? отправка подтверждениия (верификации) на email пользователя
     //todo ___________________ Nodemailer ____________________
+
 
     res.status(201).json({
         // status: "success",
@@ -117,7 +122,6 @@ const registrationController = async (req, res) => {
         }
     });
 };
-
 
 module.exports = registrationController;
 
