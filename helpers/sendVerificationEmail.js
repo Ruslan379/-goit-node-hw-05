@@ -19,7 +19,7 @@ const sendVerificationEmail = async (data) => {
         // };
         const msg = { ...data, from: "nsor@ukr.net" }
         await sgMail.send(msg);
-        console.log("Email send success!".bgGreen.black);
+        console.log("Email send using SendGrid success!".bgGreen.black);
         console.log("");
     } catch (error) {
         throw error;

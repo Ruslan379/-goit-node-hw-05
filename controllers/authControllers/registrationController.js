@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 //* gravatar
 const gravatar = require("gravatar");
 
-//? sendgrid
+//? ----------------------- SendGrid -----------------------
 // const sgMail = require('@sendgrid/mail');
 // require("dotenv").config();
 // const { SENDGRID_API_KEY } = process.env;
@@ -13,6 +13,13 @@ const gravatar = require("gravatar");
 // // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const { sendVerificationEmail } = require("../../helpers");
+//? _______________________ SendGrid _______________________
+
+//todo ------------------- Nodemailer -------------------
+const nodemailer = require("nodemailer");
+require("dotenv").config();
+const { META_PASSWORD } = process.env;
+//todo ___________________ Nodemailer ____________________
 
 
 //-----------------------------------------------------------------------------
@@ -47,16 +54,17 @@ const registrationController = async (req, res) => {
 
     console.log("\nnewUser:".green, newUser); //!
 
-    //? ------------------- sendgrid -------------------
-    const data = {
+    //? ------------------- SendGrid -------------------
+    const dataSendGrid = {
         to: email,
         // from: 'nsor@ukr.net', // Use the email address or domain you verified above
         subject: 'Thank you for registration-4!',
         text: 'and easy to do anywhere, even with Node.js',
         html: '<h1>and easy to do anywhere, even with Node.js</h1>',
     };
-    sendVerificationEmail(data);
+    // sendVerificationEmail(dataSendGrid); //? отправка подтверждениия (верификации) на email пользователя
 
+    //? OLD
     // const msg = {
     //     to: email,
     //     from: 'nsor@ukr.net', // Use the email address or domain you verified above
@@ -65,9 +73,39 @@ const registrationController = async (req, res) => {
     //     html: '<h1>and easy to do anywhere, even with Node.js</h1>',
     // };
     // await sgMail.send(msg);
-    // console.log("Email send success!".bgGreen.black);
+    // console.log("Email send using SendGrid success!".bgGreen.black);
     // console.log("");
-    //? ___________________ sendgrid ____________________
+    //? ___________________ SendGrid ____________________
+
+
+    //todo ------------------- Nodemailer -------------------
+    // Объект конфикурации META:
+    const nodemalierConfig = {
+        host: "smtp.meta.ua",
+        port: 465, // 25, 465, 2255
+        secure: true,
+        auth: {
+            user: "arnov@meta.ua",
+            pass: META_PASSWORD,
+        }
+    };
+
+    const transporter = nodemailer.createTransport(nodemalierConfig);
+
+    const dataNodemailer = {
+        to: email,
+        from: 'arnov@meta.ua', // Use the email address or domain you verified above
+        subject: 'Thank you for registration-5!',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<h1>and easy to do anywhere, even with Node.js</h1>',
+    };
+
+    await transporter.sendMail(dataNodemailer);
+    console.log("Email send using Nodemailer success!".bgCyan.black);
+    console.log("");
+    // .then(() => console.log("Email send using Nodemailer success!".bgCyan.black))
+    // .catch(error => console.log(error.message));
+    //todo ___________________ Nodemailer ____________________
 
     res.status(201).json({
         // status: "success",
