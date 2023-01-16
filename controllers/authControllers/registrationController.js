@@ -48,7 +48,7 @@ const registrationController = async (req, res) => {
         from: 'nsor@ukr.net', // Use the email address or domain you verified above
         subject: 'Thank you for registration!',
         text: 'and easy to do anywhere, even with Node.js',
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        html: '<h1>and easy to do anywhere, even with Node.js</h1>',
     };
     await sgMail.send(msg);
 
