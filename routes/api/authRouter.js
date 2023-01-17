@@ -58,6 +58,10 @@ router.patch(
 );
 
 
+//! 7. Верификация email пользователя
+//!    GET -- > api/users/verify/:verificationToken
+router.get("/verify/:verificationToken", controllerWrapper(ctrl.verifyEmail));
+
 
 // module.exports = { authRouter: router }
 module.exports = router

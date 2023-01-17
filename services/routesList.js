@@ -55,5 +55,5 @@
 //! 6. Обновление аватарки (avatarURL) пользователя
 // PATCH -- > http://localhost:3000/api/users/avatars
 
-//! 7. Верификация пользователя
+//! 7. Верификация email пользователя
 // GET -- > http://localhost:3000/api/users/verify/:verificationToken,

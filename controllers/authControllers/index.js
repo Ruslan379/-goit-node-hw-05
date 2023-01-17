@@ -4,6 +4,7 @@ const logoutController = require("./logoutController")
 const getCurrentController = require("./getCurrentController")
 const updatePatchUserSubscription = require("./updatePatchUserSubscription")
 const updateAvatar = require("./updateAvatar")
+const verifyEmail = require("./verifyEmail")
 
 
 
@@ -13,5 +14,6 @@ module.exports = {
     logoutController,
     getCurrentController,
     updatePatchUserSubscription,
-    updateAvatar
+    updateAvatar,
+    verifyEmail,
 }
