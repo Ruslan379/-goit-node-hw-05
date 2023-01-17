@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 //* gravatar
 const gravatar = require("gravatar");
 
+const { nanoid } = require("nanoid");
+
 //? ----------------------- SendGrid -----------------------
 // const sgMail = require('@sendgrid/mail');
 // require("dotenv").config();
@@ -47,9 +49,16 @@ const registrationController = async (req, res) => {
     //* gravatar
     const avatarURL = gravatar.url(email);
 
+    //? ------------------- SendGrid -------------------
+    //todo ------------------- Nodemailer -------------------
+    const verificationToken = nanoid();
+    console.log("");
+    console.log("verificationToken:".bgRed.white, verificationToken.red); //!
+
+
     //? 3-вариант (самый сложный)
     //!  Хеширование и засока password с помошью bcryptjs (или bcrypt) используется в userSchema
-    const newUser = new User({ email, avatarURL }); //* gravatar
+    const newUser = new User({ email, avatarURL, verificationToken }); //* gravatar + SendGrid or Nodemailer
     await newUser.setPassword(password);
     await newUser.save();
     //! _______________________ Хеширование и засолка password _________________________
@@ -67,7 +76,7 @@ const registrationController = async (req, res) => {
         text: '...and easy to do anywhere, even with Node.js and SendGrid',
         html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
     };
-    // sendVerificationEmailSendGrid(dataSendGrid); //! отправка подтверждениия (верификации) на email пользователя
+    // await sendVerificationEmailSendGrid(dataSendGrid); //! отправка подтверждениия (верификации) на email пользователя
 
     //? OLD
     // const msg = {
@@ -100,9 +109,11 @@ const registrationController = async (req, res) => {
     const dataNodemailer = {
         to: email,
         // from: META_EMAIL, //? Use the email address or domain you verified above
-        subject: 'Thank you for registration with Nodemailer-8!',
-        text: '...and easy to do anywhere, even with Node.js and Nodemailer',
-        html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
+        // subject: 'Thank you for registration with Nodemailer-8!',
+        subject: 'Подтверждение регистрации на сайте-1',
+        // text: '...and easy to do anywhere, even with Node.js and Nodemailer',
+        // html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
+        html: `<a href = "http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Нажмите для подтверждения вашего EMAIL</a>`,
     };
 
     // await transporter.sendMail(dataNodemailer);
@@ -111,7 +122,7 @@ const registrationController = async (req, res) => {
     // // .then(() => console.log("Email send using Nodemailer success!".bgCyan.black))
     // // .catch(error => console.log(error.message));
 
-    sendVerificationEmailNodemailer(dataNodemailer); //! отправка подтверждениия (верификации) на email пользователя
+    await sendVerificationEmailNodemailer(dataNodemailer); //! отправка подтверждениия (верификации) на email пользователя
     //todo ___________________ Nodemailer ____________________
 
 
