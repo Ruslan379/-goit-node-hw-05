@@ -1,6 +1,6 @@
 require("colors");
 const { User } = require("../../models/userModel.js");
-const { Unauthorized } = require("http-errors");
+const { Unauthorized, BadRequest } = require("http-errors");
 
 const bcrypt = require("bcryptjs")
 
@@ -8,18 +8,23 @@ const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
 
+const { lineBreak } = require("../../services");
+
 
 //-----------------------------------------------------------------------------
 const loginController = async (req, res) => {
     const { email, password } = req.body;
 
-    console.log("email:", email); //!
-    console.log("password:", password); //!
-    console.log("User:", User); //!
+    console.log("email:".bgCyan.black, email.cyan); //!
+    console.log("");
+    console.log("password:".bgCyan.black, password.cyan); //!
+    console.log("");
+    console.log("User:".bgCyan.black, User); //!
+    console.log("");
 
     let user = await User.findOne({ email });
 
-    console.log("user:", user); //!
+    console.log("user:".bgCyan.black, user); //!
 
     //! ОШИБКА Unauthorized - если пароль или email неверный
     //? 1-вариант (разнные соообщения об ошибках email или password)
@@ -36,6 +41,15 @@ const loginController = async (req, res) => {
     if (!user || !user.comparePassword(password)) {
         throw new Unauthorized("Email or password is wrong");
     }
+
+    //! Проверка пользователя на верификацию его email
+    if (!user.verify) {
+        //! ===========================console============================
+        console.log("ПОЛЬЗОВАТЕЛЬ с таким email: ".bgYellow.black, email.cyan, " НЕ верифицирован!".bgYellow.black); //!
+        lineBreak();
+        //! ==============================================================
+        throw new Unauthorized(`Email not verified`)
+    };
 
     //! Создаем ТОКЕН
     const payload = { id: user._id, email: user.email, };
