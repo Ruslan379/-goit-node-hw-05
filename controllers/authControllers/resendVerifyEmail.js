@@ -1,6 +1,13 @@
 const { NotFound, BadRequest } = require('http-errors');
 const { User } = require("../../models");
 
+//? ----------------------- SendGrid -----------------------
+const { sendVerificationEmailSendGrid } = require("../../helpers");
+
+//todo ------------------- Nodemailer -------------------
+const { sendVerificationEmailNodemailer } = require("../../helpers");
+
+
 const { lineBreak } = require("../../services");
 
 
@@ -36,25 +43,22 @@ const resendVerifyEmail = async (req, res, next) => {
         throw new BadRequest(`Verification has already been passed`)
     };
 
+    //! Отправка письма
+    const mail = {
+        to: email,
+        subject: "Подтверждение регистрации на сайте (повторное)",
+        html: `<a href="http://localhost:3000/api/auth/verify/${user.verificationToken}" target="_blank">Нажмите для повторного подтверждения вашего EMAIL</a>`
+    };
+    //? ------------------- SendGrid -------------------
+    // await sendVerificationEmailSendGrid(dataSendGrid); //! отправка повторного подтверждениия (верификации) на email пользователя
+    //? ___________________ SendGrid ___________________
 
-
-
+    //todo ---------------- Nodemailer ----------------
+    await sendVerificationEmailNodemailer(dataNodemailer); //! отправка повторного подтверждениия (верификации) на email пользователя
+    //todo ________________ Nodemailer _________________
 
     // await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: null });
 
-    //! ===========================console============================
-    // console.log("verifyEmail-->user:".bgYellow.red); //?
-    // console.log(user);
-    // lineBreak();
-    //! ==============================================================
-
-    //! Мой вариант
-    // res.status(200).json({
-    //     message: "Verification successful",
-    //     status: "success",
-    //     code: 200,
-    //     data: { user },
-    // });
 
     //! Как в ДЗ-6
     res.json({
