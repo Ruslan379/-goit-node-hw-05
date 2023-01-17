@@ -26,12 +26,12 @@ const resendVerifyEmail = async (req, res, next) => {
 
 
 
-    await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: null });
+    // await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: null });
 
     //! ===========================console============================
-    console.log("verifyEmail-->user:".bgYellow.red); //?
-    console.log(user);
-    lineBreak();
+    // console.log("verifyEmail-->user:".bgYellow.red); //?
+    // console.log(user);
+    // lineBreak();
     //! ==============================================================
 
     //! Мой вариант
@@ -44,9 +44,9 @@ const resendVerifyEmail = async (req, res, next) => {
 
     //! Как в ДЗ-6
     res.json({
-        message: "Verification successful",
-        status: "success",
-        code: 200,
+        message: "resendVerifyEmail",
+        // status: "success",
+        // code: 200,
         data: { user }
     });
 };
