@@ -63,7 +63,6 @@ userSchema.methods.comparePassword = function (password) {
 }
 
 
-
 //! Правильный код ошибки contactSchema
 userSchema.post("save", handleSchemaValidationErrors)
 
