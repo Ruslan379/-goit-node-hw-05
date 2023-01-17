@@ -8,62 +8,42 @@ const { lineBreak } = require("../../services");
 const verifyEmail = async (req, res, next) => {
     console.log(""); //!
 
-    const { id: userId, subscription: subscriptionReqUser } = req.user
+    const { verificationToken } = req.params;
 
-    console.log("req.user --> userId:".bgBlue.yellow, userId); //!
-    console.log("req.user --> subscriptionReqUser:".bgBlue.yellow, subscriptionReqUser); //!
-
-    const { subscription } = req.body
-
-    console.log("req.body --> subscription:".bgBlue.red, subscription); //!
-
-
-    //! Проверка условия "Если body нет" - 2-ой вариант
-    if (!(subscription === "starter" || subscription === "pro" || subscription === "business")) {
-        throw new BadRequest("missing field favorite")
-    }
-
-    //* =============================console===================================
-    console.log("updatePatchUserSubscription-->req.user:".bgYellow.red); //?
-    // console.table(req.user); //?
-    // console.table([req.user]);
-    console.log(req.user);
-
-    console.log("updatePatchUserSubscription-->userId:".bgYellow.blue, userId); //?
-    console.log("");
-    //* =======================================================================
-
-
-    //! ===========================console============================
-    console.log("START-->PATCH/:id/subscription".rainbow); //!
-    lineBreak();
-    //! ==============================================================
-
-    const user = await User.findOneAndUpdate({ _id: userId }, { subscription }, { new: true });
-
+    const user = await User.findOne({ verificationToken });
 
     if (!user) {
         //! ===========================console============================
-        console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким ID:".yellow, userId.red); //!
+        console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким verificationToken:".yellow, verificationToken.red); //!
         lineBreak();
-        console.log("END-->PATCH/:id/subscription".rainbow); //!
+        // console.log("END-->PATCH/:id/subscription".rainbow); //!
         //! ==============================================================
-        throw new NotFound(`Contact wiht id:'${userId}' not found`)
-    }
+        throw new NotFound(`User not found`)
+    };
+
+    await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: null });
 
     //! ===========================console============================
-    console.log(`ОБНОВЛЕННЫЙ ПОЛЬЗОВАТЕЛЬ с ID: ${userId}:`.rainbow); //!
-    console.log(user); //!
-    lineBreak();
-    console.log("END-->PATCH/:id/subscription".rainbow); //!
+    console.log("verifyEmail-->user:".bgYellow.red); //?
+    console.log(user);
     lineBreak();
     //! ==============================================================
 
-    res.status(200).json({
+    //! Мой вариант
+    // res.status(200).json({
+    //     message: "Verification successful",
+    //     status: "success",
+    //     code: 200,
+    //     data: { user },
+    // });
+
+    //! Как в ДЗ-6
+    res.json({
+        message: "Verification successful",
         status: "success",
         code: 200,
         data: { user }
-    })
+    });
 };
 
 module.exports = verifyEmail;
