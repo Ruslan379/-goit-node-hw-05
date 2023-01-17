@@ -8,18 +8,23 @@ const { lineBreak } = require("../../services");
 const resendVerifyEmail = async (req, res, next) => {
     console.log(""); //!
 
-    const { verificationToken } = req.params;
+    const { email } = req.body;
 
-    const user = await User.findOne({ verificationToken });
+    const user = await User.findOne({ email });
 
     if (!user) {
         //! ===========================console============================
-        console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким verificationToken:".yellow, verificationToken.red); //!
+        console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким email:".yellow, email.red); //!
         lineBreak();
         // console.log("END-->PATCH/:id/subscription".rainbow); //!
         //! ==============================================================
         throw new NotFound(`User not found`)
     };
+
+
+
+
+
 
     await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: null });
 
