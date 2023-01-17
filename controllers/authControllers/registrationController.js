@@ -8,7 +8,7 @@ const gravatar = require("gravatar");
 //? ----------------------- SendGrid -----------------------
 // const sgMail = require('@sendgrid/mail');
 // require("dotenv").config();
-// const { SENDGRID_API_KEY } = process.env;
+// const { SENDGRID_API_KEY, SENDGRID_EMAIL } = process.env;
 // sgMail.setApiKey(SENDGRID_API_KEY);
 // // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -18,7 +18,7 @@ const { sendVerificationEmailSendGrid } = require("../../helpers");
 //todo ------------------- Nodemailer -------------------
 // const nodemailer = require("nodemailer");
 // require("dotenv").config();
-// const { META_PASSWORD } = process.env;
+// const { META_EMAIL, META_PASSWORD } = process.env;
 
 const { sendVerificationEmailNodemailer } = require("../../helpers");
 //todo ___________________ Nodemailer ____________________
@@ -60,7 +60,7 @@ const registrationController = async (req, res) => {
     //? ------------------- SendGrid -------------------
     const dataSendGrid = {
         to: email,
-        // from: 'nsor@ukr.net', // Use the email address or domain you verified above
+        // from: SENDGRID_EMAIL, // Use the email address or domain you verified above
         subject: 'Thank you for registration with SendGrid-5!',
         text: '...and easy to do anywhere, even with Node.js and SendGrid',
         html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
@@ -70,7 +70,7 @@ const registrationController = async (req, res) => {
     //? OLD
     // const msg = {
     //     to: email,
-    //     from: 'nsor@ukr.net', //! Use the email address or domain you verified above
+    //     from: SENDGRID_EMAIL, //! Use the email address or domain you verified above
     //     subject: 'Thank you for registration with SendGrid-5!',
     //     text: '...and easy to do anywhere, even with Node.js and SendGrid',
     //     html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
@@ -88,7 +88,7 @@ const registrationController = async (req, res) => {
     //     port: 465, // 25, 465, 2255
     //     secure: true,
     //     auth: {
-    //         user: "arnov@meta.ua",
+    //         user: META_EMAIL,
     //         pass: META_PASSWORD,
     //     }
     // };
@@ -97,8 +97,8 @@ const registrationController = async (req, res) => {
 
     const dataNodemailer = {
         to: email,
-        // from: 'arnov@meta.ua', //! Use the email address or domain you verified above
-        subject: 'Thank you for registration with Nodemailer-6!',
+        // from: META_EMAIL, //! Use the email address or domain you verified above
+        subject: 'Thank you for registration with Nodemailer-7!',
         text: '...and easy to do anywhere, even with Node.js and Nodemailer',
         html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
     };
