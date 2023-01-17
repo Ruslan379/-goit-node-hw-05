@@ -56,4 +56,7 @@
 // PATCH -- > http://localhost:3000/api/users/avatars
 
 //! 7. Верификация email пользователя
-// GET -- > http://localhost:3000/api/users/verify/:verificationToken,
+// GET -- > http://localhost:3000/api/users/verify/:verificationToken
+
+//! 8. Добавление повторной отправки email пользователю с ссылкой для верификации
+// POST -- > http://localhost:3000/api/users/verify

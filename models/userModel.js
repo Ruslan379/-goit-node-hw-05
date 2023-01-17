@@ -7,6 +7,8 @@ const { handleSchemaValidationErrors } = require("../helpers");
 const bcrypt = require("bcryptjs");
 
 //-----------------------------------------------------------------------------
+const emailRegexp = /^[\w.]+@[\w]+.[\w]+$/;
+
 const userSchema = Schema({
     email: {
         type: String,
@@ -95,6 +97,13 @@ const changeSubscriptionJoiSchema = Joi.object({
         .valueOf(...subscriptionList)
         .required(),
 });
+//--------------------------------------------------------------------
+const verifyEmailJoiSchema = Joi.object({
+    email: Joi.string()
+        .pattern(emailRegexp)
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua', 'org',] } })
+        .required(),
+})
 //* _______________________ Схемы ВАЛИДАЦИИ Joi _______________________
 
 
@@ -107,6 +116,7 @@ module.exports = {
     User,
     registerJoiSchema,
     loginJoiSchema,
-    changeSubscriptionJoiSchema
+    changeSubscriptionJoiSchema,
+    verifyEmailJoiSchema,
 };
 

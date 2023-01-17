@@ -14,12 +14,14 @@ const { authControllers: ctrl } = require("../../controllers")
 const {
     registerJoiSchema,
     loginJoiSchema,
-    changeSubscriptionJoiSchema
+    changeSubscriptionJoiSchema,
+    verifyEmailJoiSchema,
 } = require("../../models/userModel.js");
 
 const validateMiddlewareRegister = validation(registerJoiSchema);
 const validateMiddlewarelogin = validation(loginJoiSchema);
 const validateMiddlewareChangeSubscription = validation(changeSubscriptionJoiSchema);
+const validateMiddlewareVerifyEmail = validation(verifyEmailJoiSchema);
 
 //-----------------------------------------------------------------------------
 //! 1. Регистрация
@@ -61,6 +63,11 @@ router.patch(
 //! 7. Верификация email пользователя
 //!    GET -- > api/users/verify/:verificationToken
 router.get("/verify/:verificationToken", controllerWrapper(ctrl.verifyEmail));
+
+
+//! 8. Добавление повторной отправки email пользователю с ссылкой для верификации
+//!    POST -- > api/users/verify
+router.get("/verify", validateMiddlewareVerifyEmail, controllerWrapper(ctrl.resendVerifyEmail));
 
 
 // module.exports = { authRouter: router }
