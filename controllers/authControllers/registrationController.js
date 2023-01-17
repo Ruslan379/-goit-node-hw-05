@@ -54,8 +54,10 @@ const registrationController = async (req, res) => {
     await newUser.save();
     //! _______________________ Хеширование и засолка password _________________________
 
+
     console.log("\nnewUser:".green, newUser); //!
     console.log("");
+
 
     //? ------------------- SendGrid -------------------
     const dataSendGrid = {
@@ -65,12 +67,12 @@ const registrationController = async (req, res) => {
         text: '...and easy to do anywhere, even with Node.js and SendGrid',
         html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
     };
-    // sendVerificationEmailSendGrid(dataSendGrid); //? отправка подтверждениия (верификации) на email пользователя
+    // sendVerificationEmailSendGrid(dataSendGrid); //! отправка подтверждениия (верификации) на email пользователя
 
     //? OLD
     // const msg = {
     //     to: email,
-    //     from: SENDGRID_EMAIL, //! Use the email address or domain you verified above
+    //     from: SENDGRID_EMAIL, //? Use the email address or domain you verified above
     //     subject: 'Thank you for registration with SendGrid-5!',
     //     text: '...and easy to do anywhere, even with Node.js and SendGrid',
     //     html: '<h1>...and easy to do anywhere, even with Node.js and SendGrid</h1>',
@@ -97,8 +99,8 @@ const registrationController = async (req, res) => {
 
     const dataNodemailer = {
         to: email,
-        // from: META_EMAIL, //! Use the email address or domain you verified above
-        subject: 'Thank you for registration with Nodemailer-7!',
+        // from: META_EMAIL, //? Use the email address or domain you verified above
+        subject: 'Thank you for registration with Nodemailer-8!',
         text: '...and easy to do anywhere, even with Node.js and Nodemailer',
         html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
     };
@@ -109,7 +111,7 @@ const registrationController = async (req, res) => {
     // // .then(() => console.log("Email send using Nodemailer success!".bgCyan.black))
     // // .catch(error => console.log(error.message));
 
-    sendVerificationEmailNodemailer(dataNodemailer); //? отправка подтверждениия (верификации) на email пользователя
+    sendVerificationEmailNodemailer(dataNodemailer); //! отправка подтверждениия (верификации) на email пользователя
     //todo ___________________ Nodemailer ____________________
 
 
