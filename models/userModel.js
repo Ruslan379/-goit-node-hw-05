@@ -72,6 +72,7 @@ const subscriptionList = ["starter", "pro", "business"];
 
 const registerJoiSchema = Joi.object({
     email: Joi.string()
+        .pattern(emailRegexp)
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua', 'org',] } })
         .required(),
     password: Joi.string()
@@ -84,6 +85,7 @@ const registerJoiSchema = Joi.object({
 //--------------------------------------------------------------------
 const loginJoiSchema = Joi.object({
     email: Joi.string()
+        .pattern(emailRegexp)
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ua', 'org',] } })
         .required(),
     password: Joi.string()

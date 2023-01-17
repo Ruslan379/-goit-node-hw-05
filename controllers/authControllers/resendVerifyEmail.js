@@ -10,17 +10,31 @@ const resendVerifyEmail = async (req, res, next) => {
 
     const { email } = req.body;
 
+    if (!email) {
+        //! ===========================console============================
+        console.log("Поле email являестя обязательным!!!".yellow); //!
+        lineBreak();
+        //! ==============================================================
+        throw new NotFound(`Missing required field email`)
+    };
+
     const user = await User.findOne({ email });
 
     if (!user) {
         //! ===========================console============================
         console.log("Нет ПОЛЬЗОВАТЕЛЯ с таким email:".yellow, email.red); //!
         lineBreak();
-        // console.log("END-->PATCH/:id/subscription".rainbow); //!
         //! ==============================================================
         throw new NotFound(`User not found`)
     };
 
+    if (user.verify) {
+        //! ===========================console============================
+        console.log("ПОЛЬЗОВАТЕЛЬ с таким email: ".bgYellow.black, email.bgWhite.red, " уже верифицирован!".bgYellow.black); //!
+        lineBreak();
+        //! ==============================================================
+        throw new BadRequest(`Verification has already been passed`)
+    };
 
 
 
@@ -44,7 +58,7 @@ const resendVerifyEmail = async (req, res, next) => {
 
     //! Как в ДЗ-6
     res.json({
-        message: "resendVerifyEmail",
+        message: "Verification email sent",
         // status: "success",
         // code: 200,
         data: { user }

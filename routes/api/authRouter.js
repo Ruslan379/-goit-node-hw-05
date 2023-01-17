@@ -67,7 +67,12 @@ router.get("/verify/:verificationToken", controllerWrapper(ctrl.verifyEmail));
 
 //! 8. Добавление повторной отправки email пользователю с ссылкой для верификации
 //!    POST -- > api/users/verify
-router.post("/verify", validateMiddlewareVerifyEmail, controllerWrapper(ctrl.resendVerifyEmail));
+// router.post("/verify", controllerWrapper(ctrl.resendVerifyEmail));
+router.post(
+    "/verify",
+    validateMiddlewareVerifyEmail,
+    controllerWrapper(ctrl.resendVerifyEmail)
+);
 
 
 // module.exports = { authRouter: router }
