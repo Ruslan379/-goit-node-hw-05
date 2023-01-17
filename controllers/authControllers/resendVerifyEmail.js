@@ -1,11 +1,10 @@
 const { NotFound, BadRequest } = require('http-errors');
 const { User } = require("../../models");
 
-//? ----------------------- SendGrid -----------------------
-const { sendVerificationEmailSendGrid } = require("../../helpers");
-
-//todo ------------------- Nodemailer -------------------
-const { sendVerificationEmailNodemailer } = require("../../helpers");
+const {
+    sendVerificationEmailSendGrid, //?  SendGrid
+    sendVerificationEmailNodemailer //todo  Nodemailer 
+} = require("../../helpers");
 
 
 const { lineBreak } = require("../../services");
@@ -49,18 +48,14 @@ const resendVerifyEmail = async (req, res, next) => {
         subject: "Подтверждение регистрации на сайте (повторное)",
         html: `<a href="http://localhost:3000/api/auth/verify/${user.verificationToken}" target="_blank">Нажмите для повторного подтверждения вашего EMAIL</a>`
     };
+
     //? ------------------- SendGrid -------------------
     // await sendVerificationEmailSendGrid(dataSendGrid); //! отправка повторного подтверждениия (верификации) на email пользователя
-    //? ___________________ SendGrid ___________________
 
     //todo ---------------- Nodemailer ----------------
     await sendVerificationEmailNodemailer(dataNodemailer); //! отправка повторного подтверждениия (верификации) на email пользователя
-    //todo ________________ Nodemailer _________________
-
-    // await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: null });
 
 
-    //! Как в ДЗ-6
     res.json({
         message: "Verification email sent",
         // status: "success",

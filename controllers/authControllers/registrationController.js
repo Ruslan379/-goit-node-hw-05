@@ -110,7 +110,7 @@ const registrationController = async (req, res) => {
         to: email,
         // from: META_EMAIL, //? Use the email address or domain you verified above
         // subject: 'Thank you for registration with Nodemailer-8!',
-        subject: 'Подтверждение регистрации на сайте-2',
+        subject: 'Подтверждение регистрации на сайте-3',
         // text: '...and easy to do anywhere, even with Node.js and Nodemailer',
         // html: '<h1>...and easy to do anywhere, even with Node.js and Nodemailer</h1>',
         html: `<a href = "http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Нажмите для подтверждения вашего EMAIL</a>`,
