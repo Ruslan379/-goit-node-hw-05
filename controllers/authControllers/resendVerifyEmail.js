@@ -47,8 +47,8 @@ const resendVerifyEmail = async (req, res, next) => {
     //! Отправка письма
     const mail = {
         to: email,
-        subject: "Подтверждение регистрации на сайте (повторное)_18-1",
-        html: `<a href="http://localhost:3000/api/auth/verify/${user.verificationToken}" target="_blank">Нажмите для повторного подтверждения вашего EMAIL</a>`
+        subject: "Подтверждение регистрации на сайте (повторное)_18-2",
+        html: `<a href="http://localhost:3000/api/users/verify/${user.verificationToken}" target="_blank">Нажмите для повторного подтверждения вашего EMAIL</a>`
     };
 
     //? ------------------- SendGrid -------------------

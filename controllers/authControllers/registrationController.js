@@ -141,7 +141,7 @@ const registrationController = async (req, res) => {
         to: email,
         // from: META_EMAIL, //? Use the email address or domain you verified above
         // from: SENDGRID_EMAIL, //? Use the email address or domain you verified above
-        subject: 'Подтверждение регистрации на сайте_18-1',
+        subject: 'Подтверждение регистрации на сайте_18-2',
         // text: '...and easy to do anywhere, even with Node.js and Nodemailer',
         html: `<a href = "http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Нажмите для подтверждения вашего EMAIL</a>`,
     };
