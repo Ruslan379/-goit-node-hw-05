@@ -68,6 +68,10 @@ const registrationController = async (req, res) => {
     console.log("");
 
 
+
+
+
+
     //? ------------------- SendGrid -------------------
     const dataSendGrid = {
         to: email,
@@ -122,8 +126,31 @@ const registrationController = async (req, res) => {
     // // .then(() => console.log("Email send using Nodemailer success!".bgCyan.black))
     // // .catch(error => console.log(error.message));
 
-    await sendVerificationEmailNodemailer(dataNodemailer); //! отправка подтверждениия (верификации) на email пользователя
+    // await sendVerificationEmailNodemailer(dataNodemailer); //! отправка подтверждениия (верификации) на email пользователя
     //todo ___________________ Nodemailer ____________________
+
+
+
+
+
+
+    //? ------------------ SendGrid -------------------
+    //todo -------------- Nodemailer ------------------
+    //! Отправка письма
+    const mail = {
+        to: email,
+        // from: META_EMAIL, //? Use the email address or domain you verified above
+        // from: SENDGRID_EMAIL, //? Use the email address or domain you verified above
+        subject: 'Подтверждение регистрации на сайте_18-1',
+        // text: '...and easy to do anywhere, even with Node.js and Nodemailer',
+        html: `<a href = "http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Нажмите для подтверждения вашего EMAIL</a>`,
+    };
+
+    //? ------------------ SendGrid -------------------
+    await sendVerificationEmailSendGrid(mail); //! отправка подтверждениия (верификации) на email пользователя
+
+    //todo -------------- Nodemailer ------------------
+    // await sendVerificationEmailNodemailer(mail); //! отправка подтверждениия (верификации) на email пользователя
 
 
     res.status(201).json({

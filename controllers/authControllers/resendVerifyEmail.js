@@ -42,18 +42,20 @@ const resendVerifyEmail = async (req, res, next) => {
         throw new BadRequest(`Verification has already been passed`)
     };
 
+    //? ------------------ SendGrid -------------------
+    //todo -------------- Nodemailer ------------------
     //! Отправка письма
     const mail = {
         to: email,
-        subject: "Подтверждение регистрации на сайте (повторное)",
+        subject: "Подтверждение регистрации на сайте (повторное)_18-1",
         html: `<a href="http://localhost:3000/api/auth/verify/${user.verificationToken}" target="_blank">Нажмите для повторного подтверждения вашего EMAIL</a>`
     };
 
     //? ------------------- SendGrid -------------------
-    // await sendVerificationEmailSendGrid(mail); //! отправка повторного подтверждениия (верификации) на email пользователя
+    await sendVerificationEmailSendGrid(mail); //! отправка повторного подтверждениия (верификации) на email пользователя
 
     //todo ---------------- Nodemailer ----------------
-    await sendVerificationEmailNodemailer(mail); //! отправка повторного подтверждениия (верификации) на email пользователя
+    // await sendVerificationEmailNodemailer(mail); //! отправка повторного подтверждениия (верификации) на email пользователя
 
 
     res.json({
