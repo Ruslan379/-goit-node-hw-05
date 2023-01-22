@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", false); //!!!!!
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false); //!!!!!
 
-const app = require('./app')
+const app = require('./app');
 
 //? Тестовое задание от ITeam
-const testTasksITeam = require("./_testTasks/testTasksITeam.js");
+const testTasksITeam = require('./_testTasks/testTasksITeam.js');
 
 
 //----------------------------------------------------------------
@@ -23,7 +23,6 @@ const testTasksITeam = require("./_testTasks/testTasksITeam.js");
 //   x = x - y;
 //   console.log("ПОСЛЕ: ", "x =", x, "y =", y); // x = 21 y = 12
 //   console.log("");
-
 
 //   //----------------------------------------------------------------
 //   const arr2 = { a: 1, b: 2 };
@@ -73,7 +72,7 @@ const testTasksITeam = require("./_testTasks/testTasksITeam.js");
 //   console.log("Количество входных данных --> n =", n);
 
 //   //? 1-й вариант
-//   //! Вычислительная временная сложность(time complexity) --> 
+//   //! Вычислительная временная сложность(time complexity) -->
 //   // const timeComplexity = parseInt(((n + 1) / 2), 10) * 3;
 
 //   //? 2-й вариант
@@ -108,7 +107,6 @@ const { DB_HOST, PORT = 3000 } = process.env;
 //     process.exit(1); //? закрыть все неиспользуемые процессы
 //   });
 
-
 //! 2-вариант NEW
 // async function main() {
 //   try {
@@ -134,12 +132,10 @@ const { DB_HOST, PORT = 3000 } = process.env;
     app.listen(PORT);
     console.log(`Server is running on the port: ${PORT}`.bgGreen.red);
     console.log(`Start HW-5 --> DRAFT`.bgRed.green);
-    console.log("Database connection successful".bgBlue.yellow);
-    console.log("---------------------------------------".yellow);
-
+    console.log('Database connection successful'.bgBlue.yellow);
+    console.log('---------------------------------------'.yellow);
   } catch (error) {
     console.log(error.message);
     process.exit(1); //? закрыть все неиспользуемые процессы
   }
 })();
-
