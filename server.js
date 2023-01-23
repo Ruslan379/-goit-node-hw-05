@@ -91,7 +91,8 @@ const testTasksITeam = require('./_testTasks/testTasksITeam.js');
 
 //* Тестовое задание от ITeam
 testTasksITeam();
-//----------------------------------------------------------------
+
+// ----------------------------------------------------------------
 
 const { DB_HOST, PORT = 3000 } = process.env;
 
