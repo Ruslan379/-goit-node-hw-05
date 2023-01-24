@@ -1,5 +1,5 @@
 //? +++++++++++++++++++  mongoose +++++++++++++++++++
-const { number } = require("joi");
+// const { number } = require("joi");
 const { Contact } = require("../../models");
 const { User } = require("../../models");
 
@@ -46,23 +46,18 @@ const getAllContacts = async (req, res, next) => {
 
     // const contacts = await Contact.find({ owner: userId }); //*
     //? Пагинация
-    const contacts = await Contact.find({ owner: userId, skip, limit: Number(limit) })
+    // const contacts = await Contact.find({ owner: userId, skip, limit: Number(limit) }) //! так перестало работать!!!
+    const contacts = await Contact.find({ owner: userId })
         .select({ createdAt: 0 })   //! не показывать поле "createdAt"
         .skip(skip)   //! с какого элемента массива (объекта) начать показ
-        .limit(limit)   //! сколько элементов массива (объекта) показать
+        // .limit(limit)   // сколько элементов массива (объекта) показать
+        .limit(Number(limit))   //! сколько элементов массива (объекта) показать
         .sort("name") //! сортировка по полю "name"
         //* Доп. задание-2: Сделать фильтрацию контактов по полю избранного (GET /contacts?favorite=true)
         .find({ favorite }) //! отдельный поиск по полю "favorite = true"
         //! ВЫКЛЮЧИТЬ для корректной работы маршрута: GET --> http://localhost:3000/api/contacts?favorite=true(false)
         .find().exists('favorite', true)
-
-        // .find({ favorite }).exists('favorite', true)
-
-        // .find(function (favorite) {
-        //     if (favorite = undefined) return;
-        //     return { favorite }
-        // })
-        .populate("owner", "_id email subscription updatedAt")
+        .populate("owner", "_id email subscription updatedAt");
 
 
     //? ========================== Aggregation ================================
