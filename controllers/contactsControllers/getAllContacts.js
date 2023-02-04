@@ -47,7 +47,8 @@ const getAllContacts = async (req, res, next) => {
     // const contacts = await Contact.find({ owner: userId }); //*
     //? Пагинация
     // const contacts = await Contact.find({ owner: userId, skip, limit: Number(limit) }) //! так не работает, если в server.js есть строчка: mongoose.set('strictQuery', false); 
-    const contacts = await Contact.find({ owner: userId })
+    // const contacts = await Contact.find({ owner: userId })
+    const contacts = await Contact.find({ owner: userId }, "", { skip, limit: Number(limit) }) //* так РАБОТАЕТ, даже если в server.js есть строчка: mongoose.set('strictQuery', false); 
         .select({ createdAt: 0 })   //! не показывать поле "createdAt"
         .skip(skip)   //! с какого элемента массива (объекта) начать показ
         // .limit(limit)   // сколько элементов массива (объекта) показать

@@ -47,7 +47,10 @@ const registrationController = async (req, res) => {
     // const newUser = await User.create({ email, password: hashPassword }); 
 
     //* gravatar
-    const avatarURL = gravatar.url(email);
+    // const avatarURL = gravatar.url(email);
+    // const avatarURL = gravatar.url(email, { protocol: 'https', d: 'retro' });
+    // const avatarURL = gravatar.url(email, { protocol: 'https', s: '32', d: 'retro' });
+    const avatarURL = gravatar.url(email, { protocol: 'https', d: 'robohash' });
 
     //? ------------------- SendGrid -------------------
     //todo ------------------- Nodemailer -------------------
